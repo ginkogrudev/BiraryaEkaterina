@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biraria Ekaterina | Best Sea View in Sarafovo</title>
+    <meta name="description" content="Enjoy the finest beer and food with an incredible sea view in Sarafovo, Burgas.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-blue-100">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="font-bold text-xl tracking-tight text-blue-900">
+                BIRARIA <span class="text-amber-500">EKATERINA</span>
+            </div>
+            <a href="#menu" class="bg-amber-500 text-white px-4 py-2 rounded-full font-bold text-sm hover:bg-amber-600 transition">VIEW MENU</a>
+        </div>
+    </nav>
+
+    <section class="relative h-[90vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80" alt="Sarafovo Sea View" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/10"></div>
+        </div>
+        
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="text-4xl md:text-6xl font-black mb-4 drop-shadow-lg">The Best View in Sarafovo</h1>
+            <p class="text-lg md:text-xl mb-8 opacity-90">Where better to drink your coffee than facing the Black Sea?</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#reservations" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition shadow-xl">Book a Table</a>
+                <a href="#menu" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">Digital Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-16 max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-10">Our Specialties</h2>
+        
+        <div class="flex gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+            <button onclick="filterMenu('all')" class="menu-tab active">All</button>
+            <button onclick="filterMenu('beer')" class="menu-tab">Beer</button>
+            <button onclick="filterMenu('food')" class="menu-tab">Food</button>
+            <button onclick="filterMenu('coffee')" class="menu-tab">Coffee</button>
+        </div>
+
+        <div id="menu-container" class="grid gap-6">
+            </div>
+    </section>
+
+    <footer id="reservations" class="bg-blue-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready for a Cold One?</h2>
+            <p class="mb-8 opacity-80">Ul. Cherno More 30, Sarafovo, Burgas</p>
+            <a href="tel:+359000000000" class="inline-block bg-amber-500 text-blue-900 px-10 py-4 rounded-full font-black text-xl hover:bg-amber-400 transition mb-4">
+                CALL TO RESERVE
+            </a>
+            <div class="mt-8 pt-8 border-t border-blue-800 text-sm opacity-50">
+                &copy; 2026 Biraria Ekaterina. Built for Speed.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/* Custom Menu Tab Styles */
+.menu-tab {
+    @apply px-6 py-2 rounded-full border border-blue-200 text-blue-900 whitespace-nowrap transition-all;
+}
+
+.menu-tab.active {
+    @apply bg-blue-900 text-white border-blue-900 shadow-md;
+}
+
+/* Smooth Image Loading */
+img {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Item Animation */
+.menu-item {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
