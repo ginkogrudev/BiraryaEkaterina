@@ -1,7 +1,18 @@
 const MENU_DATA = {
+    lunch_special: {
+        title: "Lunch  Special",
+        icon: "🍽️",
+        image: "",
+        items: [
+            { name: "Chicken Soup", price: "4.80", desc: "Creamy broth with farm chicken.", tags: ["Local"] },
+            { name: "Fish Soup", price: "6.30", desc: "Fresh Black Sea catch, herbs.", tags: ["Local"] },
+            { name: "Blueberry Cheesecake", price: "7.60", desc: "Classic cheesecake with berries.", tags: ["Sweat"] }
+        ]
+    },
     beer: {
         title: "Cold Drafts",
         icon: "🍺",
+        image: "",
         items: [
             { name: "Burgasko Draft", price: "4.20", desc: "The local favorite, ice cold", tags: ["Local"] },
             { name: "Bernard Lager", price: "6.50", desc: "Premium Czech unpasteurized beer", tags: ["Premium"] }
@@ -10,6 +21,7 @@ const MENU_DATA = {
     fish: {
         title: "From the Sea",
         icon: "🐟",
+        image: "",
         items: [
             { name: "Sarafovo Sprats", price: "8.90", desc: "Crispy, salty, perfect with beer", tags: ["Popular"] },
             { name: "Grilled Seabass", price: "18.50", desc: "Freshly caught, served with lemon", tags: ["Fresh"] }
@@ -23,37 +35,35 @@ const grid = document.getElementById('menu-grid');
 function initMenu() {
     // 1. Build Navigation
     nav.innerHTML = Object.keys(MENU_DATA).map(key => `
-        <button onclick="scrollToCat('${key}')" class="flex flex-col items-center min-w-[70px]">
-            <span class="text-2xl mb-1">${MENU_DATA[key].icon}</span>
-            <span class="text-[10px] font-bold uppercase tracking-tighter text-gray-500">${key}</span>
-        </button>
+        <button onclick="renderCategory('${key}')" class="bg-blue-900 text-white px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap shadow-lg">${MENU_DATA[key].icon} ${MENU_DATA[key].title}</button>
     `).join('');
-
+    
+    renderCategory("lunch_special")
     // 2. Build Grid
-    grid.innerHTML = Object.keys(MENU_DATA).map(key => `
-        <section id="${key}" class="scroll-mt-32">
-            <h2 class="text-2xl font-serif italic text-blue-900 mb-4 flex items-center gap-2">
-                ${MENU_DATA[key].title}
-            </h2>
-            <div class="space-y-4">
-                ${MENU_DATA[key].items.map(item => `
-                    <div class="flex justify-between items-start border-b border-dashed border-gray-200 pb-4">
-                        <div class="pr-4">
-                            <h4 class="font-bold text-gray-900">${item.name}</h4>
-                            <p class="text-sm text-gray-500 mt-1 leading-tight">${item.desc}</p>
-                            <div class="flex gap-1 mt-2">
-                                ${item.tags.map(t => `<span class="text-[9px] bg-gray-100 px-2 py-0.5 rounded text-gray-600 font-bold">${t}</span>`).join('')}
-                            </div>
-                        </div>
-                        <span class="font-serif font-bold text-blue-900 whitespace-nowrap">${item.price} лв.</span>
-                    </div>
-                `).join('')}
-            </div>
-        </section>
-    `).join('');
+    // grid.innerHTML = Object.keys(MENU_DATA).map(key => `
+    //     <section id="${key}" class="scroll-mt-32">
+    //         <h2 class="text-2xl font-serif italic text-blue-900 mb-4 flex items-center gap-2">
+    //             ${MENU_DATA[key].title}
+    //         </h2>
+    //         <div class="space-y-4">
+    //             ${MENU_DATA[key].items.map(item => `
+    //                 <div class="flex justify-between items-start border-b border-dashed border-gray-200 pb-4">
+    //                     <div class="pr-4">
+    //                         <h4 class="font-bold text-gray-900">${item.name}</h4>
+    //                         <p class="text-sm text-gray-500 mt-1 leading-tight">${item.desc}</p>
+    //                         <div class="flex gap-1 mt-2">
+    //                             ${item.tags.map(t => `<span class="text-[9px] bg-gray-100 px-2 py-0.5 rounded text-gray-600 font-bold">${t}</span>`).join('')}
+    //                         </div>
+    //                     </div>
+    //                     <span class="font-serif font-bold text-blue-900 whitespace-nowrap">${item.price} лв.</span>
+    //                 </div>
+    //             `).join('')}
+    //         </div>
+    //     </section>
+    // `).join('');
 }
 
-function scrollToCat(id) {
+function scrollToCategory(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -66,43 +76,43 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-const MENU_DATA = {
-    salads: { title: "Fresh Salads", icon: "🥗", items: [
-        { name: "Shopska Salad", price: "9.50", desc: "Tomatoes, cucumbers, peppers, onion, and Bulgarian brine cheese." },
-        { name: "Ovcharska Salad", price: "11.20", desc: "Shopska base plus ham, mushrooms, and boiled egg." }
-    ]},
-    appetizers: { title: "Appetizers", icon: "🍢", items: [
-        { name: "Sarafovo Sprats", price: "8.90", desc: "Classic fried small fish, perfect with cold beer." },
-        { name: "Grilled Halloumi", price: "12.50", desc: "Served with honey and walnuts." }
-    ]},
-    main_meals: { title: "Main Meals", icon: "🍽️", items: [
-        { name: "Pork Knuckle", price: "22.00", desc: "Slow-roasted for 6 hours, served with potatoes." },
-        { name: "Sea Bass Fillet", price: "19.50", desc: "Grilled with Mediterranean herbs and lemon." }
-    ]},
-    coffee: { title: "Coffee & Tea", icon: "☕", items: [
-        { name: "Espresso", price: "3.20", desc: "Premium Italian roast." },
-        { name: "Frappe", price: "4.50", desc: "Ice-cold whipped coffee." }
-    ]},
-    non_alcoholic: { title: "Soft Drinks", icon: "🥤", items: [
-        { name: "Homemade Lemonade", price: "5.50", desc: "Fresh lemons, mint, and honey." },
-        { name: "Mineral Water", price: "2.80", desc: "Devin / Bankia 500ml." }
-    ]},
-    beer: { title: "Beer", icon: "🍺", items: [
-        { name: "Burgasko Draft", price: "4.20", desc: "Local favorite 500ml." },
-        { name: "Staropramen", price: "5.50", desc: "Premium Czech lager." }
-    ]},
-    wine: { title: "Wine Selection", icon: "🍷", items: [
-        { name: "Chardonnay (Glass)", price: "7.00", desc: "Local Sarafovo boutique winery." },
-        { name: "Rose (Bottle)", price: "32.00", desc: "Light and fruity, perfect for the sea view." }
-    ]},
-    cocktails: { title: "Cocktails", icon: "🍹", items: [
-        { name: "Aperol Spritz", price: "12.00", desc: "The ultimate seaside drink." },
-        { name: "Mojito", price: "13.50", desc: "Fresh mint from our garden." }
-    ]},
-    hard_drinks: { title: "Hard Drinks", icon: "🥃", items: [
-        { name: "Burgas 63 Rakia", price: "5.50", desc: "The gold standard of Bulgarian rakia." },
-        { name: "Jack Daniels", price: "7.50", desc: "Classic Tennessee whiskey 50ml." }
-    ]}
-};
+function renderCategory(categoryKey) {
+    const category = MENU_DATA[categoryKey];
+    const grid = document.getElementById('menu-grid'); // Ensure your container has this ID
+
+    grid.innerHTML = `
+        <section class="animate-fadeIn">
+            <div class="mb-8 text-center md:text-left">
+                <h2 class="text-4xl font-serif text-blue-900 flex items-center justify-center md:justify-start gap-3">
+                    <span class="text-3xl">${category.icon}</span>
+                    ${category.title}
+                </h2>
+                <div class="h-1 w-20 bg-amber-500 mt-2 mx-auto md:mx-0"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                ${category.items.map(item => `
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-gray-900 text-xl">${item.name}</h4>
+                                <span class="font-serif font-black text-blue-900 text-lg whitespace-nowrap">
+                                    ${item.price} <span class="text-xs">лв.</span>
+                                </span>
+                            </div>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-4">${item.desc}</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2">
+                            ${item.tags.map(t => `
+                                <span class="text-[10px] bg-blue-50 px-2 py-1 rounded-full text-blue-600 font-bold uppercase tracking-wider">${t}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </section>
+    `;
+}
 
 initMenu();
