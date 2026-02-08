@@ -1,67 +1,212 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="bg" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biraria Ekaterina | Best Sea View in Sarafovo</title>
-    <meta name="description" content="Enjoy the finest beer and food with an incredible sea view in Sarafovo, Burgas.">
+    <title>Бирария Екатерина | Събития, Скара и Море в Сарафово</title>
+    <meta name="description" content="Идеалното място за вашата сватба, рожден ден или фирмено парти в Сарафово. Насладете се на прясна риба и ледена бира на брега на морето.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
 
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-blue-100">
-        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="font-bold text-xl tracking-tight text-blue-900">
-                BIRARIA <span class="text-amber-500">EKATERINA</span>
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <div class="font-black text-2xl tracking-tighter text-blue-900 uppercase">
+                ЕКАТЕРИНА <span class="text-amber-500">SARAFOVO</span>
             </div>
-            <a href="#menu" class="bg-amber-500 text-white px-4 py-2 rounded-full font-bold text-sm hover:bg-amber-600 transition">VIEW MENU</a>
+            <div class="hidden md:flex gap-8 font-bold text-sm text-gray-600">
+                <a href="#events" class="hover:text-blue-900 transition">СЪБИТИЯ</a>
+                <a href="#menu" class="hover:text-blue-900 transition">МЕНЮ</a>
+                <a href="#reviews" class="hover:text-blue-900 transition">ОТЗИВИ</a>
+            </div>
+            <a href="#reserve" class="bg-blue-900 text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-blue-800 transition shadow-lg transform hover:-translate-y-0.5">
+                РЕЗЕРВИРАЙ МАСА
+            </a>
         </div>
     </nav>
 
     <section class="relative h-[90vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80" alt="Sarafovo Sea View" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/10"></div>
+            <img src="img/hero1.jpg" alt="Празнувайте в Сарафово" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-transparent"></div>
         </div>
         
-        <div class="relative z-10 text-center text-white px-4">
-            <h1 class="text-4xl md:text-6xl font-black mb-4 drop-shadow-lg">The Best View in Sarafovo</h1>
-            <p class="text-lg md:text-xl mb-8 opacity-90">Where better to drink your coffee than facing the Black Sea?</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#reservations" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition shadow-xl">Book a Table</a>
-                <a href="#menu" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">Digital Menu</a>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 w-full">
+            <div class="max-w-2xl text-white">
+                <span class="bg-amber-500 text-blue-900 font-black px-3 py-1 rounded text-xs uppercase tracking-widest mb-4 inline-block">
+                    Сезон 2026
+                </span>
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                    Мястото за Вашите <br>
+                    <span class="text-amber-400">Специални Моменти</span>
+                </h1>
+                <p class="text-xl mb-10 text-gray-200 font-medium">
+                    От интимни вечери до сватби на брега. Най-добрата гледка в Сарафово, съчетана с безупречна скара.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#menu" class="bg-amber-500 text-blue-900 px-8 py-4 rounded-lg font-black text-lg hover:bg-amber-400 transition text-center">
+                        ВИЖ МЕНЮТО
+                    </a>
+                    <a href="#events" class="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-lg font-black text-lg hover:bg-white hover:text-blue-900 transition text-center">
+                        ОРГАНИЗИРАЙ СЪБИТИЕ
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="menu" class="py-16 max-w-4xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-10">Our Specialties</h2>
-        
-        <div class="flex gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
-            <button onclick="filterMenu('all')" class="menu-tab active">All</button>
-            <button onclick="filterMenu('beer')" class="menu-tab">Beer</button>
-            <button onclick="filterMenu('food')" class="menu-tab">Food</button>
-            <button onclick="filterMenu('coffee')" class="menu-tab">Coffee</button>
-        </div>
-
-        <div id="menu-container" class="grid gap-6">
+    <section id="events" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-blue-900 mb-4 uppercase">Празнувайте с Нас</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Ние не предлагаме просто маса. Ние предлагаме преживяване. Ето какво правим най-добре:
+                </p>
             </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-96">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Тиймбилдинг">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900 via-blue-900/40 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <h3 class="text-2xl font-black text-white mb-2">Фирмени Партита</h3>
+                        <p class="text-gray-200 mb-4 text-sm">Сплотете екипа с ледена бира и морски бриз. Капацитет до 100 души.</p>
+                        <a href="#reserve" class="text-amber-400 font-bold uppercase text-sm hover:text-white transition">Попитай за оферта →</a>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-96 transform md:-translate-y-4">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Сватби">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900 via-blue-900/40 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <span class="bg-amber-500 text-blue-900 text-xs font-bold px-2 py-1 rounded mb-2 inline-block">НАЙ-ТЪРСЕНО</span>
+                        <h3 class="text-2xl font-black text-white mb-2">Сватби & Кръщенета</h3>
+                        <p class="text-gray-200 mb-4 text-sm">Романтика на брега. Персонално меню и декорация за вашия голям ден.</p>
+                        <a href="#reserve" class="text-amber-400 font-bold uppercase text-sm hover:text-white transition">Запази дата →</a>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-96">
+                    <img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&q=80" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Рождени дни">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900 via-blue-900/40 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <h3 class="text-2xl font-black text-white mb-2">Юбилеи & Рождени Дни</h3>
+                        <p class="text-gray-200 mb-4 text-sm">Музика, танци и храна, за която ще се говори дълго.</p>
+                        <a href="#reserve" class="text-amber-400 font-bold uppercase text-sm hover:text-white transition">Запази маса →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer id="reservations" class="bg-blue-900 text-white py-12">
+    <section id="reviews" class="py-20 bg-slate-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="text-3xl font-black text-blue-900 uppercase">Думите на Квартала</h2>
+                <div class="flex items-center gap-2">
+                    <span class="text-amber-500 text-2xl">★★★★★</span>
+                    <span class="font-bold text-gray-600">4.8/5 в Google</span>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-1 text-amber-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Най-добрата цаца в Сарафово! Гледката е невероятна, а бирата винаги студена. Препоръчвам с две ръце."</p>
+                    <p class="font-bold text-blue-900">— Иван Петров</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-1 text-amber-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Празнувахме рождения ден на детето тук. Организацията беше топ, а храната дойде бързо въпреки пълното заведение."</p>
+                    <p class="font-bold text-blue-900">— Мария Г.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-1 text-amber-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Мястото за залез в Бургас. Рибената чорба е задължителна."</p>
+                    <p class="font-bold text-blue-900">— Стефан Димов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reserve" class="py-24 bg-blue-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500 rounded-full blur-[100px] opacity-20"></div>
+
+        <div class="max-w-5xl mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-4xl font-black mb-6 uppercase">Запазете Своето Място</h2>
+                <p class="text-blue-100 text-lg mb-8">
+                    Масите на първа линия свършват бързо, особено за залеза. Обадете се сега или попълнете формата за събития.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-blue-900 font-bold text-xl">📞</div>
+                        <div>
+                            <p class="text-sm text-blue-200 uppercase tracking-wider">Телефон за Резервации</p>
+                            <p class="text-2xl font-black">+359 8XX XXX XXX</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white font-bold text-xl">📍</div>
+                        <div>
+                            <p class="text-sm text-blue-200 uppercase tracking-wider">Локация</p>
+                            <p class="text-lg font-bold">ул. Черно море 30, Сарафово</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white text-gray-900 p-8 rounded-3xl shadow-2xl">
+                <h3 class="font-bold text-xl mb-6 text-blue-900">Бързо Запитване</h3>
+                <form class="space-y-4" onsubmit="event.preventDefault(); alert('Reservation feature coming soon!');">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Име</label>
+                        <input type="text" class="w-full bg-gray-100 border-0 rounded-lg p-3 font-semibold focus:ring-2 focus:ring-amber-500" placeholder="Вашето име">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Дата</label>
+                            <input type="date" class="w-full bg-gray-100 border-0 rounded-lg p-3 font-semibold focus:ring-2 focus:ring-amber-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Гости</label>
+                            <select class="w-full bg-gray-100 border-0 rounded-lg p-3 font-semibold focus:ring-2 focus:ring-amber-500">
+                                <option>2 души</option>
+                                <option>4 души</option>
+                                <option>6+ души</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="w-full bg-amber-500 hover:bg-amber-400 text-blue-900 font-black py-4 rounded-lg text-lg transition shadow-lg">
+                        ИЗПРАТИ ЗАПИТВАНЕ
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-4">Ready for a Cold One?</h2>
-            <p class="mb-8 opacity-80">Ul. Cherno More 30, Sarafovo, Burgas</p>
-            <a href="tel:+359000000000" class="inline-block bg-amber-500 text-blue-900 px-10 py-4 rounded-full font-black text-xl hover:bg-amber-400 transition mb-4">
-                CALL TO RESERVE
-            </a>
-            <div class="mt-8 pt-8 border-t border-blue-800 text-sm opacity-50">
-                &copy; 2026 Biraria Ekaterina. Built for Speed.
+            <div class="font-black text-2xl tracking-tighter text-white uppercase mb-4">
+                ЕКАТЕРИНА <span class="text-amber-500">SARAFOVO</span>
             </div>
+            <p class="mb-8 max-w-md mx-auto">Създаваме спомени на брега на морето от 2024. Заповядайте за храната, останете за гледката.</p>
+            <div class="flex justify-center gap-6 mb-8 text-sm font-bold uppercase tracking-widest text-slate-500">
+                <a href="#" class="hover:text-white transition">Facebook</a>
+                <a href="#" class="hover:text-white transition">Instagram</a>
+                <a href="#" class="hover:text-white transition">Google Maps</a>
+            </div>
+            <p class="text-xs opacity-30">&copy; 2026 Biraria Ekaterina. Built by GG Solutions.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

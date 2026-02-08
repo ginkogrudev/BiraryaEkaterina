@@ -1,124 +1,261 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="bg" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Menu | Biraria Ekaterina</title>
+    <title>Menu | Biraria Ekaterina Sarafovo</title>
+    <meta name="description" content="Official Digital Menu of Biraria Ekaterina. Grilled Ribs, Fresh Fish, and Cold Beer in Sarafovo.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .category-pill:active { transform: scale(0.95); }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        /* High contrast for outdoor sunlight reading */
-        body { background-color: #f8fafc; color: #0f172a; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="antialiased">
+<body class="bg-gray-50 text-gray-900 pb-32 font-inter">
 
-    <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200 px-4 py-3 flex justify-between items-center">
-        <h1 class="font-black text-xl tracking-tighter text-blue-900 uppercase">Ekaterina <span class="text-amber-500">Menu</span></h1>
-        <div class="flex gap-2">
-            <button class="text-xs font-bold border rounded px-2 py-1 bg-gray-100">BG</button>
-            <button class="text-xs font-bold border rounded px-2 py-1">EN</button>
-        </div>
-    </header>
-
-    <nav class="sticky top-[53px] z-40 bg-white/95 backdrop-blur-md px-4 py-3 overflow-x-auto no-scrollbar flex gap-3 border-b">
-        <button onclick="scrollToCategory('beer')" class="bg-blue-900 text-white px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap shadow-lg">🍺 Beer</button>
-        <button onclick="scrollToCategory('grill')" class="bg-gray-100 text-gray-700 px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap">🔥 Grill</button>
-        <button onclick="scrollToCategory('fish')" class="bg-gray-100 text-gray-700 px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap">🐟 Sea Food</button>
-        <button onclick="scrollToCategory('salads')" class="bg-gray-100 text-gray-700 px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap">🥗 Salads</button>
-    </nav>
-
-    <main class="p-4 space-y-8 pb-24">
-        
-        <body class="pb-32">
-    <section class="px-6 pt-12 pb-8 text-center bg-[#1a2c42] text-white rounded-b-[40px] shadow-2xl">
-        <p class="text-amber-400 uppercase tracking-widest text-xs font-bold mb-2">Sarafovo • Since 2024</p>
-        <h1 class="text-4xl mb-2 italic">Biraria Ekaterina</h1>
-        <div class="w-12 h-1 bg-amber-500 mx-auto rounded-full"></div>
-    </section>
-
-    <section class="px-4 -mt-6">
-        <div class="grid grid-cols-2 gap-3">
-            <div class="bg-amber-100 p-4 rounded-3xl col-span-2 flex items-center justify-between shadow-sm border border-amber-200">
-                <div>
-                    <span class="bg-amber-500 text-white text-[10px] px-2 py-1 rounded-full font-bold uppercase">Must Try</span>
-                    <h3 class="font-bold text-lg text-amber-900 mt-1">Black Sea Mussels</h3>
-                </div>
-                <span class="text-xl font-black text-amber-900">14.00 лв.</span>
+    <nav class="fixed top-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-transform duration-300" id="main-nav">
+        <div class="px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="font-black text-lg tracking-tight text-blue-900 uppercase leading-none">
+                EKATERINA <br><span class="text-amber-500 text-xs">SARAFOVO</span>
+            </a>
+            
+            <div class="flex bg-gray-100 rounded-lg p-1">
+                <button onclick="setLang('bg')" id="btn-bg" class="px-3 py-1 text-xs font-bold rounded-md transition-all bg-white text-blue-900 shadow-sm">BG</button>
+                <button onclick="setLang('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded-md transition-all text-gray-400 hover:text-gray-600">EN</button>
             </div>
         </div>
-    </section>
-
-    <nav id="category-nav" class="sticky top-0 z-50 bg-[#fdfcf8]/90 backdrop-blur-md px-4 py-6 flex gap-4 overflow-x-auto no-scrollbar border-b border-gray-100">
-        </nav>
-
-    <main id="menu-grid" class="px-4 space-y-10 mt-6">
-        </main>
-
-    <div class="fixed bottom-8 left-0 right-0 px-6 z-50">
-        <div class="glass-card p-2 rounded-full shadow-2xl flex items-center justify-between border border-gray-200">
-            <button class="bg-blue-900 text-white w-full py-4 rounded-full font-bold flex items-center justify-center gap-3">
-                <span>🛎️</span> Call Waiter
-            </button>
+        
+        <div class="flex gap-2 px-4 pb-3 overflow-x-auto hide-scrollbar whitespace-nowrap border-t border-gray-100 pt-2">
+            <a href="#cat-favorites" class="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm active:scale-95 transition-transform">
+                <span>🔥</span> <span class="lang-bg font-bold text-sm">Любими</span><span class="lang-en font-bold text-sm hidden">Favorites</span>
+            </a>
+            <a href="#cat-grill" class="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm active:scale-95 transition-transform">
+                <span>🥩</span> <span class="lang-bg font-bold text-sm">Скара</span><span class="lang-en font-bold text-sm hidden">Grill</span>
+            </a>
+            <a href="#cat-burgers" class="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm active:scale-95 transition-transform">
+                <span>🍔</span> <span class="lang-bg font-bold text-sm">Бургери</span><span class="lang-en font-bold text-sm hidden">Burgers</span>
+            </a>
+            <a href="#cat-fish" class="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm active:scale-95 transition-transform">
+                <span>🐟</span> <span class="lang-bg font-bold text-sm">Риба</span><span class="lang-en font-bold text-sm hidden">Fish</span>
+            </a>
+            <a href="#cat-drinks" class="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm active:scale-95 transition-transform">
+                <span>🍺</span> <span class="lang-bg font-bold text-sm">Напитки</span><span class="lang-en font-bold text-sm hidden">Drinks</span>
+            </a>
         </div>
-    </div>
+    </nav>
 
-        <section id="beer">
-            <h2 class="text-2xl font-black text-blue-900 mb-4 flex items-center gap-2">
-                <span class="w-2 h-8 bg-amber-500 rounded-full"></span> Draft Beer
-            </h2>
-            <div class="space-y-3">
-                <div class="flex justify-between items-start bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                    <div>
-                        <h3 class="font-bold text-lg">Local Craft Lager</h3>
-                        <p class="text-sm text-gray-500 italic">Fresh from the tap, 500ml</p>
+    <main class="pt-[130px] px-4 space-y-12 max-w-2xl mx-auto">
+
+        <section id="cat-favorites" class="scroll-mt-36">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-3xl">🔥</span>
+                <h2 class="text-2xl font-black text-blue-900 uppercase italic">
+                    <span class="lang-bg">Топ Предложения</span><span class="lang-en hidden">Crowd Favorites</span>
+                </h2>
+            </div>
+            
+            <div class="space-y-6">
+                <article class="menu-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" data-id="101" data-price="9.50" data-category="favorites">
+                    <div class="relative h-56">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" alt="Свински Ребърца" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg uppercase tracking-widest">
+                            <span class="lang-bg">Хит</span><span class="lang-en hidden">Bestseller</span>
+                        </span>
                     </div>
-                    <span class="font-black text-blue-900 text-lg">4.80 лв.</span>
-                </div>
-                </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl text-gray-900 leading-tight">
+                                <span class="lang-bg item-name-bg">Свински Ребърца на Пещ</span>
+                                <span class="lang-en item-name-en hidden">Oven Roasted Pork Ribs</span>
+                            </h3>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4 leading-relaxed">
+                            <span class="lang-bg">Бавно готвени, глазирани с домашен BBQ сос. Сервират се с пържени картофки.</span>
+                            <span class="lang-en hidden">Slow-cooked, glazed with homemade BBQ sauce. Served with crispy fries.</span>
+                        </p>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="block text-2xl font-black text-blue-900">€9.50</span>
+                            <button onclick="addToCart(this)" class="bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-2xl transition-colors shadow-sm border border-blue-100">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="menu-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" data-id="102" data-price="4.50" data-category="favorites">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&q=80&w=600" alt="Цаца" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl text-gray-900 leading-tight">
+                                <span class="lang-bg item-name-bg">Хрупкава Цаца</span>
+                                <span class="lang-en item-name-en hidden">Crispy Sprats (Tsatsa)</span>
+                            </h3>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4 leading-relaxed">
+                            <span class="lang-bg">Класиката на морето. Перфектното мезе за бира.</span>
+                            <span class="lang-en hidden">The seaside classic. The perfect beer snack.</span>
+                        </p>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="block text-2xl font-black text-blue-900">€4.50</span>
+                            <button onclick="addToCart(this)" class="bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-2xl transition-colors shadow-sm border border-blue-100">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
 
-        <section id="fish">
-            <h2 class="text-2xl font-black text-blue-900 mb-4 flex items-center gap-2">
-                <span class="w-2 h-8 bg-blue-500 rounded-full"></span> Fresh Catch
-            </h2>
-            <div class="space-y-3">
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&q=60&w=400" class="w-full h-32 object-cover" alt="Fried Fish">
-                    <div class="p-4 flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-lg">Fried Tsatsa (Sprats)</h3>
-                            <p class="text-sm text-gray-500">The Sarafovo special</p>
-                        </div>
-                        <span class="font-black text-blue-900 text-lg">9.50 лв.</span>
+        <section id="cat-grill" class="scroll-mt-36">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-3xl">🥩</span>
+                <h2 class="text-2xl font-black text-blue-900 uppercase italic">
+                    <span class="lang-bg">Скара на Дървени Въглища</span><span class="lang-en hidden">Charcoal Grill</span>
+                </h2>
+            </div>
+            
+            <div class="space-y-6">
+                <article class="menu-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" data-id="201" data-price="7.20" data-category="grill">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&q=80&w=600" alt="Свинска вратна пържола" class="w-full h-full object-cover">
                     </div>
-                </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">
+                            <span class="lang-bg item-name-bg">Свинска Вратна Пържола</span>
+                            <span class="lang-en item-name-en hidden">Pork Neck Steak</span>
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4">
+                            <span class="lang-bg">Сочна и маринована, изпечена на жар.</span>
+                            <span class="lang-en hidden">Juicy and marinated, grilled over charcoal.</span>
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="block text-2xl font-black text-blue-900">€7.20</span>
+                            <button onclick="addToCart(this)" class="bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-2xl transition-colors shadow-sm border border-blue-100">+</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="menu-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" data-id="202" data-price="5.50" data-category="grill">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1532592309853-34d55c3e58cf?auto=format&fit=crop&q=80&w=600" alt="Пилешки Шишчета" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">
+                            <span class="lang-bg item-name-bg">Пилешки Шишчета (2 бр.)</span>
+                            <span class="lang-en item-name-en hidden">Chicken Skewers (2 pcs)</span>
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4">
+                            <span class="lang-bg">Крехко пилешко филе с чушки и лук.</span>
+                            <span class="lang-en hidden">Tender chicken fillet with peppers and onions.</span>
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="block text-2xl font-black text-blue-900">€5.50</span>
+                            <button onclick="addToCart(this)" class="bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-2xl transition-colors shadow-sm border border-blue-100">+</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="cat-drinks" class="scroll-mt-36">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-3xl">🍺</span>
+                <h2 class="text-2xl font-black text-blue-900 uppercase italic">
+                    <span class="lang-bg">Студени Напитки</span><span class="lang-en hidden">Cold Drinks</span>
+                </h2>
+            </div>
+            
+            <div class="space-y-6">
+                <article class="menu-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" data-id="501" data-price="2.50" data-category="drinks">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&q=80&w=600" alt="Бургаско" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-blue-900 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg uppercase tracking-widest">
+                            <span class="lang-bg">Локално</span><span class="lang-en hidden">Local</span>
+                        </span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">
+                            <span class="lang-bg item-name-bg">Бургаско Наливно (500мл)</span>
+                            <span class="lang-en item-name-en hidden">Burgasko Draft (500ml)</span>
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4">
+                            <span class="lang-bg">Гордостта на Бургас. Винаги прясна.</span>
+                            <span class="lang-en hidden">The pride of Burgas. Always fresh.</span>
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="block text-2xl font-black text-blue-900">€2.50</span>
+                            <button onclick="addToCart(this)" class="bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-2xl transition-colors shadow-sm border border-blue-100">+</button>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
     </main>
 
-    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md">
-        <a href="tel:+359..." class="flex items-center justify-center gap-3 bg-amber-500 text-white py-4 rounded-2xl font-black text-lg shadow-2xl active:scale-95 transition-transform">
-            <span>🛎️</span> CALL WAITER / ORDER
-        </a>
+    <div id="cart-float" class="fixed bottom-6 left-4 right-4 z-50 transform translate-y-32 transition-transform duration-300">
+        <button onclick="openCart()" class="w-full bg-blue-900 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between border border-blue-700 active:scale-95 transition-transform">
+            <div class="flex items-center gap-3">
+                <span class="bg-amber-500 text-blue-900 font-bold w-8 h-8 flex items-center justify-center rounded-full" id="cart-count">0</span>
+                <span class="font-bold text-lg">
+                    <span class="lang-bg">Виж Поръчката</span><span class="lang-en hidden">View Order</span>
+                </span>
+            </div>
+            <span class="font-bold text-lg" id="cart-total">€0.00</span>
+        </button>
     </div>
 
-    <script>
-        function scrollToCategory(id) {
-            const el = document.getElementById(id);
-            const offset = 110; // Header + Nav height
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = el.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - offset;
+    <div id="cart-modal" class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md h-[85vh] rounded-t-3xl sm:rounded-2xl flex flex-col shadow-2xl transform translate-y-full transition-transform duration-300" id="cart-panel">
+            
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50 rounded-t-3xl">
+                <div>
+                    <h2 class="text-2xl font-black text-blue-900 uppercase">
+                        <span class="lang-bg">Вашата Поръчка</span><span class="lang-en hidden">Your Order</span>
+                    </h2>
+                    <p class="text-xs text-gray-500">
+                        <span class="lang-bg">Покажете този екран на сервитьора</span><span class="lang-en hidden">Show this screen to your waiter</span>
+                    </p>
+                </div>
+                <button onclick="closeCart()" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold">✕</button>
+            </div>
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    </script>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-4 space-y-4">
+                </div>
+
+            <div class="p-6 border-t border-gray-100 bg-gray-50">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-500 font-bold">Total:</span>
+                    <span class="text-3xl font-black text-blue-900" id="modal-total">€0.00</span>
+                </div>
+                <button onclick="closeCart()" class="w-full bg-amber-500 hover:bg-amber-600 text-blue-900 font-black py-4 rounded-xl text-lg uppercase tracking-wide shadow-lg">
+                    <span class="lang-bg">Затвори</span><span class="lang-en hidden">Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="upsell-modal" class="fixed inset-0 z-[70] bg-black/60 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl transform scale-95 transition-transform">
+            <div class="text-5xl mb-4">🍺</div>
+            <h3 class="text-2xl font-black text-blue-900 mb-2">
+                <span class="lang-bg">Жадни ли сте?</span><span class="lang-en hidden">Thirsty?</span>
+            </h3>
+            <p class="text-gray-600 mb-6">
+                <span class="lang-bg">Избрахте страхотна храна, но пропуснахте напитките!</span>
+                <span class="lang-en hidden">You picked great food, but no drinks! Check out the beer?</span>
+            </p>
+            <div class="flex gap-3">
+                <button onclick="jumpToDrinks()" class="flex-1 bg-amber-500 text-white font-bold py-3 rounded-lg shadow-md">
+                    <span class="lang-bg">Към Напитките</span><span class="lang-en hidden">Go to Drinks</span>
+                </button>
+                <button onclick="showFinalOrder()" class="flex-1 bg-gray-100 text-gray-500 font-bold py-3 rounded-lg">
+                    <span class="lang-bg">Не, благодаря</span><span class="lang-en hidden">I'm Good</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/menu-logic.js"></script>
 </body>
 </html>
