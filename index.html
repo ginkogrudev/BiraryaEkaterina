@@ -14,21 +14,43 @@
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased">
 
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-            <div class="font-black text-2xl tracking-tighter text-blue-900 uppercase">
-                ЕКАТЕРИНА <span class="text-amber-500">SARAFOVO</span>
-            </div>
-            <div class="hidden md:flex gap-8 font-bold text-sm text-gray-600">
-                <a href="#events" class="hover:text-blue-900 transition">СЪБИТИЯ</a>
-                <a href="#menu" class="hover:text-blue-900 transition">МЕНЮ</a>
-                <a href="#reviews" class="hover:text-blue-900 transition">ОТЗИВИ</a>
-            </div>
+   <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+        
+        <a href="index.html" class="font-black text-2xl tracking-tighter text-blue-900 uppercase hover:scale-105 transition-transform">
+            ЕКАТЕРИНА <span class="text-amber-500">SARAFOVO</span>
+        </a>
+
+        <div class="hidden md:flex gap-8 font-bold text-sm text-gray-600 items-center">
+            <a href="#events" class="hover:text-blue-900 transition hover:underline underline-offset-4 decoration-amber-500">СЪБИТИЯ</a>
+            <a href="menu.html" class="text-blue-900 hover:text-amber-600 transition flex items-center gap-1">
+                <span>🍽️</span> МЕНЮ
+            </a>
+            <a href="#reviews" class="hover:text-blue-900 transition hover:underline underline-offset-4 decoration-amber-500">ОТЗИВИ</a>
+        </div>
+
+        <div class="hidden md:block">
             <a href="#reserve" class="bg-blue-900 text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-blue-800 transition shadow-lg transform hover:-translate-y-0.5">
                 РЕЗЕРВИРАЙ МАСА
             </a>
         </div>
-    </nav>
+
+        <button onclick="toggleMobileMenu()" class="md:hidden text-blue-900 focus:outline-none p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 absolute w-full left-0 top-20 shadow-xl flex flex-col p-4 space-y-4">
+        <a href="#events" onclick="toggleMobileMenu()" class="text-lg font-bold text-gray-800 block p-2 hover:bg-gray-50 rounded">🎉 Събития</a>
+        <a href="menu.html" class="text-lg font-bold text-blue-900 block p-2 bg-blue-50 rounded border border-blue-100">🍽️ Виж Менюто</a>
+        <a href="#reviews" onclick="toggleMobileMenu()" class="text-lg font-bold text-gray-800 block p-2 hover:bg-gray-50 rounded">⭐ Отзиви</a>
+        <a href="#reserve" onclick="toggleMobileMenu()" class="text-lg font-black text-center text-white bg-amber-500 block p-4 rounded-xl shadow-md">
+            РЕЗЕРВИРАЙ СЕГА
+        </a>
+    </div>
+</nav>
 
     <section class="relative h-[90vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">

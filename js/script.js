@@ -36,3 +36,23 @@ function renderMenu(items) {
 
 // Initial Load
 window.addEventListener('DOMContentLoaded', () => renderMenu(menuData));
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+    
+    // Optional: Prevent scrolling when menu is open
+    // document.body.classList.toggle('overflow-hidden');
+}
+
+// Close mobile menu when clicking outside (UX Upgrade)
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('mobile-menu');
+    const nav = document.getElementById('navbar');
+    
+    // If click is outside nav and menu is NOT hidden
+    if (!nav.contains(e.target) && !menu.classList.contains('hidden')) {
+        menu.classList.add('hidden');
+    }
+});
