@@ -2,24 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-.hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+/* --- GLOBAL --- */
+html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
+
+/* --- UTILITIES --- */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
 }
 
-html {
-    scroll-behavior: smooth;
-    -webkit-tap-highlight-color: transparent;
+/* Prevent Price Wrapping */
+.price-container {
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-align: right;
 }
 
-body {
-    background-color: #F9FAFB;
+.price-tag {
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
 }
 
-/* Ensure hidden state is strict */
-.hidden {
-    display: none !important;
+/* --- COMPONENTS --- */
+/* The "Instagram Story" Category Pill */
+.cat-pill {
+    @apply relative w-20 h-20 rounded-xl overflow-hidden border-2 border-transparent transition-all flex-shrink-0 snap-start;
+}
+.cat-pill.active {
+    @apply border-amber-500 transform scale-105 shadow-md;
+}
+.cat-pill img {
+    @apply absolute inset-0 w-full h-full object-cover transition-opacity duration-300;
+}
+.cat-pill span {
+    @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white text-[10px] font-bold text-center py-1 truncate px-1;
+}
+
+/* Menu Card Standard */
+.menu-card {
+    @apply bg-white p-4 rounded-2xl shadow-sm border border-gray-100 relative flex justify-between items-start gap-3 transition-transform duration-150;
+    min-height: 100px; /* Ensure space for description */
+}
+.menu-card:active { transform: scale(0.98); }
+
+/* The Unified "+" Button */
+.add-btn {
+    @apply bg-blue-50 text-blue-900 w-10 h-10 rounded-full flex items-center justify-center font-black text-2xl hover:bg-blue-900 hover:text-white transition-colors shadow-sm flex-shrink-0;
+    /* Positioning logic handled by flexbox in card usually, or absolute if needed */
+}
+
+/* Section Titles */
+.section-header {
+    @apply flex items-center gap-3 mb-6 pt-4 border-b-2 border-amber-100 pb-2;
+}
+.section-title {
+    @apply text-2xl font-black text-blue-900 uppercase italic tracking-tighter;
 }
