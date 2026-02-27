@@ -76,3 +76,40 @@ body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
 .glass-nav {
     transition: top 0.3s ease-in-out;
 }
+
+/* Ensure the glass nav transition is smooth */
+.glass-nav {
+    transition: top 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* --- BEER SCROLL ANIMATION --- */
+.beer-bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at center, rgba(255,255,255,0.6) 1px, transparent 2px);
+    background-size: 8px 16px;
+    animation: rise 3s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes rise {
+    0% { transform: translateY(16px); }
+    100% { transform: translateY(0); }
+}
+
+#beer-tracker:hover #beer-tooltip {
+    opacity: 1;
+}
+
+/* Simple fade in animation */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}

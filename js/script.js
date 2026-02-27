@@ -144,6 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
     adjustNavPosition();
 });
 
+
+
 // Initial Load
 window.addEventListener('DOMContentLoaded', () => renderMenu(menuData));
 
@@ -155,6 +157,106 @@ function toggleMobileMenu() {
     // Optional: Prevent scrolling when menu is open
     // document.body.classList.toggle('overflow-hidden');
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- 1. MOBILE MENU LOGIC ---
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navbar = document.getElementById('navbar');
+    const banner = document.getElementById('promo-banner');
+
+    if (menuBtn && mobileMenu) {
+        const toggleMenu = () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            const icon = menuBtn.querySelector('i');
+            
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        };
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuBtn.querySelector('i').classList.remove('fa-times');
+                menuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                menuBtn.querySelector('i').classList.remove('fa-times');
+                menuBtn.querySelector('i').classList.add('fa-bars');
+            }
+        });
+    }
+
+    // --- 2. SMART NAV POSITIONING ---
+    const adjustNavPosition = () => {
+        if (!banner || !navbar) return;
+        
+        const bannerHeight = banner.getBoundingClientRect().height;
+        const scrollY = window.scrollY;
+
+        // Snap to top when scrolling down, respect banner at the very top
+        if (scrollY > 0) {
+            navbar.style.top = '0px';
+        } else {
+            navbar.style.top = `${bannerHeight}px`;
+        }
+    };
+
+    window.addEventListener('scroll', adjustNavPosition);
+    window.addEventListener('resize', adjustNavPosition);
+    adjustNavPosition(); // Init run
+
+
+    // --- 3. THE BEER SCROLL TRACKER ---
+    const beerLiquid = document.getElementById('beer-liquid');
+    const beerFoam = document.getElementById('beer-foam');
+    const beerTooltip = document.getElementById('beer-tooltip');
+
+    if (beerLiquid && beerFoam) {
+        window.addEventListener('scroll', () => {
+            // Calculate how far down the page we've scrolled
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            
+            // Prevent division by zero and cap at 100%
+            let scrollPercent = 0;
+            if (docHeight > 0) {
+                scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            }
+            
+            // Fill the liquid
+            beerLiquid.style.height = `${scrollPercent}%`;
+            
+            // Move the foam up with the liquid
+            beerFoam.style.bottom = `${scrollPercent}%`;
+
+            // Update tooltip text based on scroll depth
+            if (beerTooltip) {
+                if (scrollPercent < 20) {
+                    beerTooltip.innerText = "Сипваме бирата...";
+                } else if (scrollPercent < 80) {
+                    beerTooltip.innerText = "Още малко...";
+                } else {
+                    beerTooltip.innerText = "Наздраве! 🍻";
+                }
+            }
+        });
+    }
+});
 
 // Close mobile menu when clicking outside (UX Upgrade)
 document.addEventListener('click', (e) => {
