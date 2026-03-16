@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="bg" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>За нас | Бирария Екатерина — Сарафово, Бургас</title>
+    <meta name="description" content="Открийте нашата история. Бирария Екатерина е емблематичен ресторант в Сарафово. Традиционна скара на дървени въглища, прясна риба и нова визия за 2026.">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://birariaekaterina.bg/about.html">
+    <meta property="og:title" content="За нас | Бирария Екатерина — Сарафово, Бургас">
+    <meta property="og:description" content="Открийте нашата история. Бирария Екатерина е емблематичен ресторант в Сарафово. Традиционна скара на дървени въглища, прясна риба и нова визия за 2026.">
+    <meta property="og:image" content="https://birariaekaterina.bg/img/og-about.jpg">
+    <meta property="og:locale" content="bg_BG">
+    <meta property="og:site_name" content="Бирария Екатерина">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://birariaekaterina.bg/about.html">
+    <meta property="twitter:title" content="За нас | Бирария Екатерина — Сарафово, Бургас">
+    <meta property="twitter:description" content="Открийте нашата история. Бирария Екатерина е емблематичен ресторант в Сарафово. Традиционна скара на дървени въглища, прясна риба и нова визия за 2026.">
+    <meta property="twitter:image" content="https://birariaekaterina.bg/img/og-about.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["Restaurant", "FoodEstablishment"],
+      "name": "Бирария Екатерина",
+      "alternateName": "Biraria Ekaterina",
+      "image": "https://birariaekaterina.bg/img/hero1.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Черно море 30",
+        "addressLocality": "Сарафово",
+        "addressRegion": "Бургас",
+        "postalCode": "8019",
+        "addressCountry": "BG"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 42.5561,
+        "longitude": 27.5229
+      },
+      "telephone": "+359884802552",
+      "url": "https://birariaekaterina.bg",
+      "menu": "https://birariaekaterina.bg/menu-bg.html",
+      "servesCuisine": ["Bulgarian cuisine", "Seafood", "Grilled food"],
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "10:00",
+        "closes": "23:00"
+      },
+      "hasMap": "https://maps.google.com/?q=Бирария+Екатерина+Сарафово",
+      "paymentAccepted": "Cash, Credit Card",
+      "currenciesAccepted": "BGN"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        playfair: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        amber: {
+                            500: '#F5A623', // Exact requested hex
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; } /* slate-900 / slate-50 */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 top-0" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="index.html" class="font-playfair font-black text-2xl tracking-tighter text-white uppercase hover:scale-105 transition-transform">
+                ЕКАТЕРИНА <span class="text-amber-500 font-sans text-xs align-top">2026</span>
+            </a>
+
+            <div class="hidden md:flex gap-8 font-bold text-sm text-gray-300 items-center">
+                <a href="index.html" class="hover:text-amber-500 transition">НАЧАЛО</a>
+                <a href="menu-bg.html" class="bg-amber-500/10 text-amber-500 border border-amber-500/30 px-4 py-2 rounded-lg hover:bg-amber-500 hover:text-slate-900 transition flex items-center gap-2">
+                    <i class="fas fa-utensils"></i> МЕНЮ
+                </a>
+                <a href="about.html" class="text-white border-b-2 border-amber-500 pb-1">ЗА НАС</a>
+                <a href="events.html" class="hover:text-amber-500 transition">СЪБИТИЯ</a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="tel:0884802552" class="bg-amber-500 text-slate-900 px-6 py-3 rounded-full font-bold text-sm hover:bg-amber-400 transition shadow-[0_0_15px_rgba(245,166,35,0.3)] transform hover:-translate-y-0.5">
+                    <i class="fas fa-phone mr-2"></i> 088 480 2552
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2 text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 absolute w-full left-0 top-20 shadow-2xl flex flex-col p-4 space-y-4">
+            <a href="index.html" class="text-lg font-bold text-gray-300 block p-2">Начало</a>
+            <a href="menu-bg.html" class="text-lg font-black text-amber-500 block p-3 bg-amber-500/10 rounded border border-amber-500/20 text-center">
+                🍽️ ОТВОРИ МЕНЮТО
+            </a>
+            <a href="about.html" class="text-lg font-bold text-white block p-2 border-l-4 border-amber-500 pl-2">За нас</a>
+            <a href="events.html" class="text-lg font-bold text-gray-300 block p-2">🎉 Събития</a>
+            <a href="tel:0884802552" class="text-lg font-black text-center text-slate-900 bg-amber-500 block p-4 rounded-xl shadow-md mt-4">
+                📞 088 480 2552
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1505881504888-2f14ea3ad648?auto=format&fit=crop&q=80" alt="Море Сарафово" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-slate-900/80"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <span class="text-amber-500 font-bold uppercase tracking-[0.3em] text-sm mb-4 block">Нашата История</span>
+            <h1 class="font-playfair text-5xl md:text-7xl font-black text-white mb-6 leading-tight drop-shadow-2xl">
+                Вкус, Традиция и <br>
+                <span class="italic text-amber-500">Море</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Ресторант Сарафово с история[cite: 55, 61]. Ние не предлагаме просто храна, а преживяване, което съчетава шума на вълните с аромата на истинска скара.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 relative">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-900/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">Пътят до тук</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto"></div>
+            </div>
+
+            <div class="relative border-l-2 border-amber-500/30 ml-4 md:ml-1/2 md:translate-x-[50%] space-y-12 pb-8">
+                
+                <div class="relative pl-8 md:pl-0 md:w-1/2 md:pr-12 md:-ml-[50%] text-left md:text-right">
+                    <div class="absolute w-5 h-5 bg-amber-500 rounded-full -left-[11px] md:left-auto md:-right-[11px] top-1 shadow-[0_0_10px_rgba(245,166,35,0.8)] border-4 border-slate-900"></div>
+                    <span class="text-amber-500 font-black text-2xl font-playfair block mb-2">2024</span>
+                    <h3 class="text-xl font-bold text-white mb-2">Началото на една мечта</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                        Бирария Екатерина отвори врати с една проста цел – да предложи на жителите и гостите на Бургас място, където студената бира и топлата скара се срещат на брега на морето.
+                    </p>
+                </div>
+
+                <div class="relative pl-8 md:pl-12 md:w-1/2 text-left">
+                    <div class="absolute w-5 h-5 bg-amber-500 rounded-full -left-[11px] top-1 shadow-[0_0_10px_rgba(245,166,35,0.8)] border-4 border-slate-900"></div>
+                    <span class="text-amber-500 font-black text-2xl font-playfair block mb-2">Сезон 2026</span>
+                    <h3 class="text-xl font-bold text-white mb-2">Изцяло нова визия</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                        За да отговорим на вашите високи очаквания, преминахме през пълна реновация[cite: 54, 209]. Разширена лятна градина, модерен интериор с тъмни акценти и изцяло обновено оборудване, запазвайки душата на заведението.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-800 border-y border-slate-700">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl font-bold text-white mb-4">В какво вярваме</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Без компромис в качеството. Това са трите стълба, на които се крепи нашето меню.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 mx-auto bg-amber-500/20 text-amber-500 rounded-full flex items-center justify-center text-3xl mb-6">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="text-xl font-playfair font-bold text-white mb-4">Автентична Скара</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Работим само с охладено месо и истински дървени въглища. Вкусът на скарата не може да бъде фалшифициран[cite: 83].
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 mx-auto bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center text-3xl mb-6">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3 class="text-xl font-playfair font-bold text-white mb-4">Прясна Риба</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Черно море е нашият дом. Селектираме най-добрата и прясна риба ежедневно, за да доставим морския вкус директно в чинията ви[cite: 83].
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 mx-auto bg-yellow-500/20 text-yellow-400 rounded-full flex items-center justify-center text-3xl mb-6">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <h3 class="text-xl font-playfair font-bold text-white mb-4">Ледена Бира</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Перфектно налята, винаги в изстудени чаши. Бирата при нас не е просто напитка, а ритуал за завършек на деня.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl h-[400px]">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80" alt="Сарафово" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-slate-900/30"></div>
+            </div>
+            
+            <div>
+                <h2 class="font-playfair text-4xl font-bold text-white mb-6">Защо Сарафово?</h2>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                    Сарафово отдавна не е просто квартал на Бургас. Това е малък оазис, който съчетава спокойствието на курортно градче с удобствата на големия град. 
+                </p>
+                <p class="text-gray-400 leading-relaxed mb-8">
+                    Разположени на ул. Черно море 30[cite: 62], ние сме достатъчно близо до морето, за да усетите бриза, и достатъчно скрити, за да се насладите на тиха вечеря с любимите хора или да отпразнувате шумно вашите специални поводи.
+                </p>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8 font-bold">
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-amber-500"></i> Уникални морски залези</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-amber-500"></i> Далеч от градския шум</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-amber-500"></i> Свободни зони за паркиране</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 relative overflow-hidden bg-slate-800">
+        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/food.png')]"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/20 rounded-full blur-[100px]"></div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="font-playfair text-4xl md:text-5xl font-black text-white mb-6">Опитахте ли новото ни меню?</h2>
+            <p class="text-xl text-gray-400 mb-10">Скарата вече е загрята. Запазете маса или разгледайте нашите предложения.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="menu-bg.html" class="bg-amber-500 text-slate-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-amber-400 transition text-center shadow-[0_0_20px_rgba(245,166,35,0.4)] transform hover:scale-105 flex items-center justify-center gap-3">
+                    <i class="fas fa-utensils"></i> ВИЖ МЕНЮТО
+                </a>
+                <a href="tel:0884802552" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-slate-900 transition text-center flex items-center justify-center gap-3">
+                    <i class="fas fa-phone-alt text-amber-500"></i> 088 480 2552
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                
+                <div>
+                    <div class="font-playfair font-black text-2xl tracking-tighter text-white uppercase mb-6">
+                        ЕКАТЕРИНА <span class="text-amber-500 font-sans text-xs align-top">2026</span>
+                    </div>
+                    <p class="text-sm opacity-70 leading-relaxed mb-6">
+                        Създаваме спомени на брега на морето. Заповядайте за храната, останете за гледката и атмосферата.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/p/%D0%91%D0%B8%D1%80%D0%B0%D1%80%D0%B8%D1%8F-%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B0-100091163343657/" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-amber-500 hover:text-slate-900 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/birariqekaterina/" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-amber-500 hover:text-slate-900 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-wider mb-6 border-b border-slate-700 pb-2 w-max">Контакти</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-amber-500 mt-1"></i>
+                            <span>гр. Бургас, кв. Сарафово,<br>ул. "Черно море" 30<br>PK 8019</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-amber-500"></i>
+                            <a href="tel:0884802552" class="hover:text-white transition font-bold">088 480 2552</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fab fa-whatsapp text-green-500 text-xl"></i>
+                            <a href="https://wa.me/359884802552" target="_blank" class="hover:text-white transition font-bold">WhatsApp Чат</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-clock text-amber-500"></i>
+                            <span>Всеки ден: 10:00 - 23:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-wider mb-6 border-b border-slate-700 pb-2 w-max">Бързи Връзки</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-amber-500 transition">🏠 Начало</a></li>
+                        <li><a href="menu-bg.html" class="hover:text-amber-500 transition">🍽️ Дигитално Меню</a></li>
+                        <li><a href="events.html" class="hover:text-amber-500 transition">🎉 Събития</a></li>
+                        <li><a href="https://share.google/kE9FB4fCrkyniDMVr" target="_blank" class="hover:text-amber-500 transition">📍 Упътване (Google Maps)</a></li>
+                    </ul>
+                </div>
+
+                <div class="h-48 md:h-full rounded-xl overflow-hidden shadow-2xl border border-slate-700 relative">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d183.67639530892637!2d27.523919302294125!3d42.559065485314214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a696b82d5d968d%3A0x533fa38e8c972c7e!2z0LHQuNGA0LDRgNC40Y8g0JXQutCw0YLQtdGA0LjQvdCw!5e0!3m2!1sen!2sbg!4v1772063592674!5m2!1sen!2sbg" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="w-full h-full grayscale hover:grayscale-0 transition duration-500">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 text-center text-xs opacity-40 uppercase tracking-widest">
+                © 2026 Biraria Ekaterina. Built for Revenue by GG Solutions.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuBtn && mobileMenu) {
+                const toggleMenu = () => {
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    const icon = menuBtn.querySelector('i');
+                    
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                };
+
+                menuBtn.addEventListener('click', toggleMenu);
+
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        menuBtn.querySelector('i').classList.remove('fa-times');
+                        menuBtn.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
