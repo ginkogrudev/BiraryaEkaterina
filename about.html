@@ -31,7 +31,7 @@
         "streetAddress": "ул. Черно море 30",
         "addressLocality": "Сарафово",
         "addressRegion": "Бургас",
-        "postalCode": "8019",
+        "postalCode": "8016",
         "addressCountry": "BG"
       },
       "geo": {
@@ -53,124 +53,96 @@
     }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        playfair: ['"Playfair Display"', 'serif'],
-                    },
-                    colors: {
-                        ocean: {
-                            900: '#0f2e3c', // Deep teal/navy from the wave
-                            800: '#164355',
-                        },
-                        amber: {
-                            500: '#F5A623', // Sunset orange
-                            400: '#ffb945',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body { background-color: #0f2e3c; color: #f8fafc; } /* Ocean Dark Theme */
-        .glass-nav {
-            background: rgba(15, 46, 60, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(245, 166, 35, 0.2);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 1px solid rgba(245, 166, 35, 0.3);
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script> <link rel="stylesheet" href="css/style.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="bg-ocean-900 text-gray-300 font-sans antialiased flex flex-col min-h-screen selection:bg-surf-accent selection:text-ocean-900">
 
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300 top-0" id="navbar">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2 hover:scale-105 transition-transform">
-                <span class="font-playfair font-black text-2xl tracking-tighter text-white uppercase">
-                    ЕКАТЕРИНА <span class="text-amber-500 font-sans text-xs align-top">2026</span>
-                </span>
+            <a href="index.html" class="font-outfit font-black text-2xl tracking-tight text-white uppercase hover:scale-105 transition-transform flex items-center gap-2">
+                <i class="fas fa-water text-surf-accent"></i> ЕКАТЕРИНА
             </a>
 
-            <div class="hidden md:flex gap-8 font-bold text-sm text-gray-300 items-center">
-                <a href="index.html" class="hover:text-amber-500 transition">НАЧАЛО</a>
-                <a href="menu-bg.html" class="hover:text-amber-500 transition">МЕНЮ</a>
-                <a href="about.html" class="text-amber-500 border-b-2 border-amber-500 pb-1">ЗА НАС</a>
-                <a href="events.html" class="hover:text-amber-500 transition">СЪБИТИЯ</a>
+            <div class="hidden md:flex gap-8 font-bold text-sm text-gray-400 items-center font-outfit uppercase tracking-wide">
+                <a href="index.html" class="hover:text-white transition">НАЧАЛО</a>
+                <a href="menu-bg.html" class="bg-surf-accent/10 text-surf-accent border border-surf-accent/30 px-4 py-2 rounded-xl hover:bg-surf-accent hover:text-ocean-900 transition flex items-center gap-2">
+                    <i class="fas fa-utensils"></i> МЕНЮ
+                </a>
+                <a href="events.html" class="hover:text-white transition">СЪБИТИЯ</a>
+                <a href="about.html" class="text-surf-accent transition">ЗА НАС</a>
             </div>
 
             <div class="hidden md:block">
-                <a href="tel:0884802552" class="bg-amber-500 text-ocean-900 px-6 py-3 rounded-full font-bold text-sm hover:bg-amber-400 transition shadow-[0_0_15px_rgba(245,166,35,0.4)] transform hover:-translate-y-0.5">
+                <a href="tel:0884802552" class="bg-surf-accent text-ocean-900 px-6 py-3 rounded-xl font-black font-outfit uppercase tracking-wide text-sm hover:-translate-y-1 transition-transform shadow-[0_0_15px_rgba(245,166,35,0.3)] flex items-center">
                     <i class="fas fa-phone mr-2"></i> 088 480 2552
                 </a>
             </div>
 
             <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2 text-2xl">
-                <i class="fas fa-bars text-amber-500"></i>
+                <i class="fas fa-bars"></i>
             </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-ocean-900 border-b border-white/10 absolute w-full left-0 top-20 shadow-2xl flex flex-col p-4 space-y-4">
+            <a href="index.html" class="text-lg font-bold text-white block p-2">🏠 Начало</a>
+            <a href="menu-bg.html" class="text-lg font-black font-outfit text-ocean-900 block p-4 bg-surf-accent rounded-xl text-center shadow-[0_0_15px_rgba(245,166,35,0.4)]">🍽️ ОТВОРИ МЕНЮТО</a>
+            <a href="events.html" class="text-lg font-bold text-white block p-2">🎉 Събития</a>
+            <a href="about.html" class="text-lg font-bold text-surf-accent block p-2 border-l-2 border-surf-accent pl-2">⚓ За нас</a>
+            <a href="tel:0884802552" class="text-lg font-black font-outfit text-center text-white bg-white/10 border border-white/20 block p-4 rounded-xl">📞 088 480 2552</a>
         </div>
     </nav>
 
     <section class="relative h-[70vh] flex items-center justify-center overflow-hidden pt-20">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1505881504888-2f14ea3ad648?auto=format&fit=crop&q=80" alt="Море Сарафово" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-ocean-900/80"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-ocean-900/90 via-ocean-900/60 to-ocean-900"></div>
         </div>
         
         <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
-            <span class="text-amber-500 font-bold uppercase tracking-[0.3em] text-sm mb-4 block">Нашата история</span>
-            <h1 class="font-playfair text-5xl md:text-7xl font-black text-white mb-6 leading-tight drop-shadow-2xl">
+            <span class="text-surf-accent font-bold uppercase tracking-[0.3em] text-sm mb-4 block font-outfit">Нашата история</span>
+            <h1 class="font-outfit text-5xl md:text-7xl font-black text-white mb-6 leading-tight drop-shadow-2xl uppercase tracking-wide">
                 Вкус, Традиция и <br>
-                <span class="italic text-amber-500">Морски Бриз</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-surf-accent to-surf-pop">Морски Бриз</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                Ресторант Сарафово история: Ние не предлагаме просто храна. Ние сервираме спомени, съчетавайки шума на вълните с аромата на истинска скара на дървени въглища.
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-medium">
+                Ние не предлагаме просто храна. Ние сервираме спомени, съчетавайки шума на вълните с аромата на истинска скара на дървени въглища.
             </p>
         </div>
     </section>
 
     <section class="py-24 bg-ocean-900 relative">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-surf-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto px-4 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">Пътят до тук</h2>
-                <div class="w-24 h-1 bg-amber-500 mx-auto"></div>
+                <h2 class="font-outfit text-4xl md:text-5xl font-black text-white mb-4 uppercase tracking-wide">Пътят до тук</h2>
+                <div class="w-16 h-1 bg-surf-accent mx-auto rounded-full"></div>
             </div>
 
-            <div class="relative border-l-2 border-amber-500/30 ml-4 md:ml-1/2 md:translate-x-[50%] space-y-12 pb-8">
+            <div class="relative border-l-2 border-white/10 ml-4 md:ml-1/2 md:translate-x-[50%] space-y-12 pb-8">
                 
                 <div class="relative pl-8 md:pl-0 md:w-1/2 md:pr-12 md:-ml-[50%] text-left md:text-right">
-                    <div class="absolute w-5 h-5 bg-amber-500 rounded-full -left-[11px] md:left-auto md:-right-[11px] top-1 shadow-[0_0_10px_rgba(245,166,35,0.8)] border-4 border-ocean-900"></div>
-                    <span class="text-amber-500 font-black text-2xl font-playfair block mb-2">2024</span>
-                    <h3 class="text-xl font-bold text-white mb-2">Началото на една мечта</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                    <div class="absolute w-4 h-4 bg-surf-accent rounded-full -left-[9px] md:left-auto md:-right-[9px] top-1 shadow-[0_0_15px_rgba(245,166,35,0.6)]"></div>
+                    <span class="text-surf-accent font-black text-2xl font-outfit block mb-2 tracking-widest">2024</span>
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide font-outfit">Началото на една мечта</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base font-medium">
                         Бирария Екатерина отвори врати с една проста цел – да предложи на жителите и гостите на Бургас място, където студената бира, топлата скара и свежият морски въздух се срещат.
                     </p>
                 </div>
 
                 <div class="relative pl-8 md:pl-12 md:w-1/2 text-left">
-                    <div class="absolute w-5 h-5 bg-amber-500 rounded-full -left-[11px] top-1 shadow-[0_0_10px_rgba(245,166,35,0.8)] border-4 border-ocean-900"></div>
-                    <span class="text-amber-500 font-black text-2xl font-playfair block mb-2">Сезон 2026</span>
-                    <h3 class="text-xl font-bold text-white mb-2">Изцяло нова визия</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                    <div class="absolute w-4 h-4 bg-surf-accent rounded-full -left-[9px] top-1 shadow-[0_0_15px_rgba(245,166,35,0.6)]"></div>
+                    <span class="text-surf-accent font-black text-2xl font-outfit block mb-2 tracking-widest">Сезон 2026</span>
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide font-outfit">Изцяло нова визия</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base font-medium">
                         За да отговорим на вашите високи очаквания, преминахме през пълна реновация. Модерен интериор с дървени и океански акценти, разширена лятна градина и изцяло обновено оборудване.
                     </p>
                 </div>
@@ -179,41 +151,40 @@
         </div>
     </section>
 
-    <section class="py-24 bg-ocean-800 border-y border-ocean-700 relative overflow-hidden">
-        <div class="absolute bottom-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')] opacity-10"></div>
+    <section class="py-24 bg-ocean-800 border-y border-white/5 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="font-playfair text-4xl font-bold text-white mb-4">В какво вярваме</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Без компромис в качеството. Това са трите стълба, на които се крепи нашето меню.</p>
+                <h2 class="font-outfit text-4xl font-black text-white mb-4 uppercase tracking-wide">В какво вярваме</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto font-medium">Без компромис в качеството. Това са трите стълба, на които се крепи нашето меню.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-16 h-16 mx-auto bg-amber-500/20 text-amber-500 rounded-full flex items-center justify-center text-3xl mb-6">
+                <div class="glass-card p-8 rounded-3xl text-center hover:-translate-y-2 transition-transform duration-300 shadow-xl">
+                    <div class="w-16 h-16 mx-auto bg-ocean-900 border border-white/10 text-surf-accent rounded-xl flex items-center justify-center text-3xl mb-6 shadow-inner">
                         <i class="fas fa-fire"></i>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-white mb-4">Автентична Скара</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                    <h3 class="text-xl font-outfit font-black text-white mb-4 uppercase tracking-wide">Автентична Скара</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-medium">
                         Работим само с прясно месо и истински дървени въглища. Вкусът на опушената скара е основата на нашето меню.
                     </p>
                 </div>
 
-                <div class="glass-card p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-16 h-16 mx-auto bg-blue-400/20 text-blue-400 rounded-full flex items-center justify-center text-3xl mb-6">
+                <div class="glass-card p-8 rounded-3xl text-center hover:-translate-y-2 transition-transform duration-300 shadow-xl">
+                    <div class="w-16 h-16 mx-auto bg-ocean-900 border border-white/10 text-surf-accent rounded-xl flex items-center justify-center text-3xl mb-6 shadow-inner">
                         <i class="fas fa-fish"></i>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-white mb-4">Прясна Риба</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                    <h3 class="text-xl font-outfit font-black text-white mb-4 uppercase tracking-wide">Прясна Риба</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-medium">
                         Черно море е нашият дом. Селектираме най-добрата риба ежедневно, за да доставим морския вкус директно в чинията ви.
                     </p>
                 </div>
 
-                <div class="glass-card p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-16 h-16 mx-auto bg-yellow-400/20 text-yellow-400 rounded-full flex items-center justify-center text-3xl mb-6">
+                <div class="glass-card p-8 rounded-3xl text-center hover:-translate-y-2 transition-transform duration-300 shadow-xl">
+                    <div class="w-16 h-16 mx-auto bg-ocean-900 border border-white/10 text-surf-accent rounded-xl flex items-center justify-center text-3xl mb-6 shadow-inner">
                         <i class="fas fa-beer"></i>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-white mb-4">Ледена Бира</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                    <h3 class="text-xl font-outfit font-black text-white mb-4 uppercase tracking-wide">Ледена Бира</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-medium">
                         Перфектно налята, винаги в изстудени чаши с плътна пяна. Ритуал за идеалния завършек на вашия ден на плажа.
                     </p>
                 </div>
@@ -221,86 +192,109 @@
         </div>
     </section>
 
-    <section class="py-24 bg-ocean-900">
+    <section class="py-24 bg-ocean-900 border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl h-[400px] border-4 border-white/5">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80" alt="Сарафово Бургас" class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition duration-700">
-                <div class="absolute inset-0 bg-ocean-900/20"></div>
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] border border-white/10 group">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80" alt="Сарафово Бургас" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                <div class="absolute inset-0 bg-ocean-900/30"></div>
             </div>
             
             <div>
-                <h2 class="font-playfair text-4xl font-bold text-white mb-6">Защо Сарафово?</h2>
-                <p class="text-gray-300 leading-relaxed mb-6">
+                <h2 class="font-outfit text-4xl font-black text-white mb-6 uppercase tracking-wide">Защо Сарафово?</h2>
+                <p class="text-gray-300 leading-relaxed mb-6 font-medium">
                     Сарафово отдавна не е просто квартал на Бургас. Това е крайбрежен оазис, който съчетава спокойствието на курортно градче с удобствата на големия град. 
                 </p>
-                <p class="text-gray-400 leading-relaxed mb-8">
+                <p class="text-gray-400 leading-relaxed mb-8 font-medium">
                     Разположени на ул. Черно море 30, ние сме достатъчно близо до морето, за да усетите вълните, и достатъчно уединени, за да се насладите на тиха вечеря или да отпразнувате шумно вашите поводи.
                 </p>
-                <ul class="space-y-3 text-sm text-gray-300 mb-8 font-bold">
-                    <li class="flex items-center gap-3"><i class="fas fa-sun text-amber-500"></i> Уникални морски залези</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-umbrella-beach text-amber-500"></i> Далеч от градския шум</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-car text-amber-500"></i> Свободни зони за паркиране</li>
+                <ul class="space-y-4 text-sm text-gray-300 mb-8 font-bold">
+                    <li class="flex items-center gap-4 glass-card px-4 py-3 rounded-xl"><i class="fas fa-sun text-surf-accent text-lg"></i> Уникални морски залези</li>
+                    <li class="flex items-center gap-4 glass-card px-4 py-3 rounded-xl"><i class="fas fa-umbrella-beach text-surf-accent text-lg"></i> Далеч от градския шум</li>
+                    <li class="flex items-center gap-4 glass-card px-4 py-3 rounded-xl"><i class="fas fa-car text-surf-accent text-lg"></i> Свободни зони за паркиране</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section class="py-20 relative overflow-hidden bg-ocean-800">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/20 rounded-full blur-[100px]"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-surf-accent/10 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <h2 class="font-playfair text-4xl md:text-5xl font-black text-white mb-6">Опитахте ли новото ни меню?</h2>
-            <p class="text-xl text-gray-400 mb-10">Скарата вече е загрята. Запазете маса или разгледайте нашите предложения.</p>
+            <h2 class="font-outfit text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-wide">Опитахте ли новото ни меню?</h2>
+            <p class="text-xl text-gray-400 mb-10 font-medium">Скарата вече е загрята. Запазете маса или разгледайте нашите предложения.</p>
             
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="menu-bg.html" class="bg-amber-500 text-ocean-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-amber-400 transition text-center shadow-[0_0_20px_rgba(245,166,35,0.4)] transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                <a href="menu-bg.html" class="bg-surf-accent text-ocean-900 px-8 py-4 rounded-xl font-black font-outfit uppercase tracking-wide text-lg hover:-translate-y-1 transition-transform shadow-[0_0_20px_rgba(245,166,35,0.4)] flex items-center justify-center gap-3">
                     <i class="fas fa-utensils"></i> ВИЖ МЕНЮТО
                 </a>
-                <a href="tel:0884802552" class="bg-transparent border-2 border-amber-500 text-amber-500 px-8 py-4 rounded-xl font-bold text-lg hover:bg-amber-500 hover:text-ocean-900 transition text-center flex items-center justify-center gap-3">
-                    <i class="fas fa-phone-alt"></i> 088 480 2552
+                <a href="tel:0884802552" class="glass-card text-white px-8 py-4 rounded-xl font-black font-outfit uppercase tracking-wide text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-3">
+                    <i class="fas fa-phone-alt text-surf-accent"></i> 088 480 2552
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="bg-ocean-900 text-gray-400 pt-16 pb-8 border-t border-ocean-800 mt-auto">
+    <footer class="bg-ocean-900 text-gray-400 pt-16 pb-8 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                 <div>
-                    <div class="font-playfair font-black text-2xl tracking-tighter text-white uppercase mb-6">
-                        ЕКАТЕРИНА <span class="text-amber-500 font-sans text-xs align-top">2026</span>
+                    <div class="font-outfit font-black text-2xl tracking-tighter text-white uppercase mb-6 flex items-center gap-2">
+                        <i class="fas fa-water text-surf-accent"></i> ЕКАТЕРИНА
                     </div>
-                    <p class="text-sm opacity-70 leading-relaxed mb-6">
-                        Къде по-добре да си пиеш кафето, от място с гледка към морето?! Заповядайте за храната, останете за гледката.
+                    <p class="text-sm font-medium leading-relaxed mb-6">
+                        Къде по-добре да си пиеш кафето, от място с гледка към морето?! Заповядайте за храната, останете за атмосферата.
                     </p>
                 </div>
+
                 <div>
-                    <h3 class="text-white font-bold uppercase tracking-wider mb-6 border-b border-ocean-700 pb-2 w-max">Контакти</h3>
-                    <ul class="space-y-4">
+                    <h3 class="text-white font-black font-outfit uppercase tracking-wide mb-6">Контакти</h3>
+                    <ul class="space-y-4 font-medium text-sm">
                         <li class="flex items-start gap-3">
-                            <i class="fas fa-map-marker-alt text-amber-500 mt-1"></i>
-                            <span>ул. "Черно море" 30<br>Сарафово, Бургас 8019</span>
+                            <i class="fas fa-map-marker-alt text-surf-accent mt-1"></i>
+                            <span>ул. "Черно море" 30<br>Сарафово, Бургас 8016</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fas fa-phone text-amber-500"></i>
-                            <a href="tel:0884802552" class="hover:text-white transition font-bold">088 480 2552</a>
+                            <i class="fas fa-phone text-surf-accent"></i>
+                            <a href="tel:0884802552" class="hover:text-surf-accent transition text-white">088 480 2552</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-clock text-surf-accent"></i>
+                            <span>Всеки ден: 10:00 - 23:00</span>
                         </li>
                     </ul>
                 </div>
+
                 <div>
-                    <h3 class="text-white font-bold uppercase tracking-wider mb-6 border-b border-ocean-700 pb-2 w-max">Връзки</h3>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="index.html" class="hover:text-amber-500 transition">Начало</a></li>
-                        <li><a href="menu-bg.html" class="hover:text-amber-500 transition">Дигитално Меню</a></li>
-                        <li><a href="events.html" class="hover:text-amber-500 transition">Събития</a></li>
+                    <h3 class="text-white font-black font-outfit uppercase tracking-wide mb-6">Бързи Връзки</h3>
+                    <ul class="space-y-3 text-sm font-medium uppercase tracking-wide">
+                        <li><a href="index.html" class="hover:text-surf-accent transition">🏠 Начало</a></li>
+                        <li><a href="menu-bg.html" class="hover:text-surf-accent transition">🍽️ Дигитално Меню</a></li>
+                        <li><a href="privacy.html" class="hover:text-surf-accent transition">🔒 Поверителност</a></li>
+                        <li><a href="https://share.google/kE9FB4fCrkyniDMVr" target="_blank" class="hover:text-surf-accent transition">📍 Google Maps Упътване</a></li>
                     </ul>
                 </div>
-                <div class="h-48 md:h-full rounded-xl overflow-hidden shadow-2xl border border-ocean-700 relative">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d183.67639530892637!2d27.523919302294125!3d42.559065485314214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a696b82d5d968d%3A0x533fa38e8c972c7e!2z0LHQuNGA0LDRgNC40Y8g0JXQutCw0YLQtdGA0LjQvdCw!5e0!3m2!1sen!2sbg!4v1772063592674!5m2!1sen!2sbg" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="w-full h-full hover:grayscale-0 transition duration-500"></iframe>
+
+                <div class="h-80 md:h-80 rounded-2xl overflow-hidden shadow-2xl border border-white/10 relative bg-ocean-800 p-1">
+                    <iframe 
+                        title="Бирария Екатерина - Сарафово Бургас"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d183.67639530892637!2d27.523919302294125!3d42.559065485314214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a696b82d5d968d%3A0x533fa38e8c972c7e!2z0LHQuNGA0LDRgNC40Y8g0JXQutCw0YLQtdGA0LjQvdCw!5e0!3m2!1sen!2sbg!4v1772063592674!5m2!1sen!2sbg" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="w-full h-full rounded-xl opacity-90 hover:opacity-100 transition-opacity">
+                    </iframe>
                 </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center text-xs opacity-60 uppercase tracking-widest font-bold">
+                © 2026 Бирария Екатерина. Всички права запазени.
             </div>
         </div>
     </footer>
 
+    <script src="js/script.js"></script>
 </body>
 </html>

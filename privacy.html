@@ -12,76 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        outfit: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        ocean: {
-                            900: '#0a1a24',
-                            800: '#0f2e3c',
-                            card: '#164355',
-                        },
-                        surf: {
-                            accent: '#F5A623',
-                            pop: '#e85d04',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        /* Dark Glassmorphism */
-        .glass-nav {
-            background: rgba(10, 26, 36, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(245, 166, 35, 0.15);
-        }
-        .glass-card {
-            background: rgba(22, 67, 85, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        /* Markdown-style formatting for legal text */
-        .legal-content h2 {
-            font-family: 'Outfit', sans-serif;
-            color: #fff;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .legal-content h3 {
-            color: #F5A623;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .legal-content p {
-            margin-bottom: 1rem;
-            line-height: 1.7;
-        }
-        .legal-content ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #d1d5db;
-        }
-        .legal-content li {
-            margin-bottom: 0.5rem;
-        }
-    </style>
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-ocean-900 text-gray-300 font-sans antialiased flex flex-col min-h-screen selection:bg-surf-accent selection:text-ocean-900">
 
@@ -250,35 +183,6 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (menuBtn && mobileMenu) {
-                const toggleMenu = () => {
-                    const isHidden = mobileMenu.classList.contains('hidden');
-                    const icon = menuBtn.querySelector('i');
-                    if (isHidden) {
-                        mobileMenu.classList.remove('hidden');
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    } else {
-                        mobileMenu.classList.add('hidden');
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                };
-                menuBtn.addEventListener('click', toggleMenu);
-                document.addEventListener('click', (e) => {
-                    if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                        menuBtn.querySelector('i').classList.remove('fa-times');
-                        menuBtn.querySelector('i').classList.add('fa-bars');
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

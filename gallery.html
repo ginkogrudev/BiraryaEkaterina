@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="bg" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Галерия | Бирария Екатерина Сарафово</title>
     <meta name="description" content="Разгледайте галерията на Бирария Екатерина в Сарафово. Скара на въглища, прясна риба и невероятна морска гледка." />
+    
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Галерия | Бирария Екатерина Сарафово" />
     <meta property="og:description" content="Морска атмосфера и прясна храна в Сарафово." />
@@ -13,32 +14,50 @@
     <meta property="og:url" content="https://birariaekaterina.bg/gallery.html" />
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Jost:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        ocean: {
+                            900: '#0a1a24',
+                            800: '#0f2e3c',
+                            card: '#164355',
+                        },
+                        surf: {
+                            accent: '#F5A623',
+                            pop: '#e85d04',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        :root {
-            --amber: #F5A623;
-            --light-bg: #fdfcfb;
-            --glass: rgba(255, 255, 255, 0.8);
+        /* Dark Glassmorphism */
+        .glass-nav {
+            background: rgba(10, 26, 36, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(245, 166, 35, 0.15);
         }
-
-        body {
-            font-family: 'Jost', sans-serif;
-            background-color: var(--light-bg);
-            color: #2d3436;
-        }
-
-        h1 { font-family: 'Playfair Display', serif; }
-
+        
         /* MASONRY GRID SYSTEM */
         .masonry-wrapper {
             column-count: 1;
             column-gap: 1.5rem;
             width: 100%;
         }
-
         @media (min-width: 640px) { .masonry-wrapper { column-count: 2; } }
         @media (min-width: 1024px) { .masonry-wrapper { column-count: 3; } }
 
@@ -49,28 +68,39 @@
             position: relative;
             border-radius: 1rem;
             overflow: hidden;
-            background: #eee; /* Placeholder bg */
-            transition: transform 0.3s ease;
+            background: rgba(22, 67, 85, 0.4); /* ocean-card */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
         }
 
         .gallery-item:hover {
             transform: translateY(-5px);
+            border-color: rgba(245, 166, 35, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
 
-        .gallery-item.hidden { display: none; }
+        .gallery-item.hidden { 
+            display: none; 
+        }
 
+        /* Filter Buttons */
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
         .filter-btn.active {
-            background-color: var(--amber);
-            color: white;
-            box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
+            background-color: #F5A623;
+            color: #0a1a24;
+            border-color: #F5A623;
+            box-shadow: 0 0 15px rgba(245, 166, 35, 0.4);
         }
 
-        /* LIGHTBOX & GESTURES */
+        /* LIGHTBOX & GESTURES (Dark Mode) */
         #lightbox {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(10, 26, 36, 0.98); /* ocean-900 */
+            backdrop-filter: blur(10px);
             z-index: 9999;
             flex-direction: column;
             justify-content: center;
@@ -84,258 +114,216 @@
             object-fit: contain;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: zoom-in;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         #lightbox-img.zoomed {
             transform: scale(1.6);
             cursor: zoom-out;
         }
-
-        .glass-nav {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
     </style>
 </head>
-<body class="pt-24">
+<body class="bg-ocean-900 text-gray-300 font-sans antialiased flex flex-col min-h-screen selection:bg-surf-accent selection:text-ocean-900">
 
-    <nav class="fixed w-full z-50 glass-nav border-b border-gray-100 shadow-sm transition-all duration-300 top-0" id="navbar">
-    <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-        <a href="index.html" class="font-black text-2xl tracking-tighter text-blue-900 uppercase hover:scale-105 transition-transform">
-            ЕКАТЕРИНА <span class="text-amber-500">2026</span>
-        </a>
-
-        <div class="hidden md:flex gap-8 font-bold text-sm text-gray-600 items-center">
-            <a href="menu-bg.html" class="bg-blue-50 text-blue-900 px-4 py-2 rounded-lg hover:bg-blue-100 transition flex items-center gap-1">
-                <i class="fas fa-utensils"></i> МЕНЮ
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 top-0" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="index.html" class="font-outfit font-black text-2xl tracking-tight text-white uppercase hover:scale-105 transition-transform flex items-center gap-2">
+                <i class="fas fa-water text-surf-accent"></i> ЕКАТЕРИНА
             </a>
-            <a href="index.html" class="hover:text-blue-900 transition-colors uppercase">Начало</a>
-            <a href="gallery.html" class="hover:text-blue-900 transition uppercase">Галерия</a>
-            <a href="events.html" class="hover:text-blue-900 transition uppercase">Събития</a>
-            <a href="about.html" class="hover:text-blue-900 transition uppercase">За нас</a>
+
+            <div class="hidden md:flex gap-8 font-bold text-sm text-gray-400 items-center font-outfit uppercase tracking-wide">
+                <a href="index.html" class="hover:text-white transition">НАЧАЛО</a>
+                <a href="menu-bg.html" class="bg-surf-accent/10 text-surf-accent border border-surf-accent/30 px-4 py-2 rounded-xl hover:bg-surf-accent hover:text-ocean-900 transition flex items-center gap-2">
+                    <i class="fas fa-utensils"></i> МЕНЮ
+                </a>
+                <a href="gallery.html" class="text-surf-accent border-b-2 border-surf-accent pb-1">ГАЛЕРИЯ</a>
+                <a href="events.html" class="hover:text-white transition">СЪБИТИЯ</a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="tel:0884802552" class="bg-surf-accent text-ocean-900 px-6 py-3 rounded-xl font-black font-outfit uppercase tracking-wide text-sm hover:-translate-y-1 transition-transform shadow-[0_0_15px_rgba(245,166,35,0.3)] flex items-center">
+                    <i class="fas fa-phone mr-2"></i> 088 480 2552
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2 text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
 
-        <div class="hidden md:block">
-            <a href="tel:0884802552" class="bg-blue-900 text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-blue-800 transition shadow-lg transform hover:-translate-y-0.5">
-                <i class="fas fa-phone mr-2"></i> 088 480 2552
+        <div id="mobile-menu" class="hidden md:hidden bg-ocean-900 border-b border-white/10 absolute w-full left-0 top-20 shadow-2xl flex flex-col p-4 space-y-4">
+            <a href="index.html" class="text-lg font-bold text-white block p-2">🏠 Начало</a>
+            <a href="menu-bg.html" class="text-lg font-black font-outfit text-ocean-900 block p-4 bg-surf-accent rounded-xl text-center shadow-[0_0_15px_rgba(245,166,35,0.4)]">🍽️ ОТВОРИ МЕНЮТО</a>
+            <a href="gallery.html" class="text-lg font-bold text-surf-accent block p-2 border-l-2 border-surf-accent pl-2">📸 Галерия</a>
+            <a href="events.html" class="text-lg font-bold text-white block p-2">🎉 Събития</a>
+            <a href="tel:0884802552" class="text-lg font-black font-outfit text-center text-white bg-white/10 border border-white/20 block p-4 rounded-xl">📞 088 480 2552</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-32 pb-20 flex-grow">
+        <div class="text-center mb-12">
+            <span class="text-surf-accent font-bold uppercase tracking-[0.3em] text-sm mb-4 block font-outfit">Нашите моменти</span>
+            <h1 class="text-5xl md:text-6xl font-black font-outfit text-white mb-6 uppercase tracking-wide">Галерия</h1>
+            <div class="w-16 h-1 bg-surf-accent mx-auto rounded-full"></div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <button class="filter-btn active px-6 py-2 rounded-full border border-white/20 text-gray-300 text-xs font-bold uppercase tracking-wider hover:border-surf-accent" data-filter="all">Всичко</button>
+            <button class="filter-btn px-6 py-2 rounded-full border border-white/20 text-gray-300 text-xs font-bold uppercase tracking-wider hover:border-surf-accent" data-filter="food">Храна & Напитки</button>
+            <button class="filter-btn px-6 py-2 rounded-full border border-white/20 text-gray-300 text-xs font-bold uppercase tracking-wider hover:border-surf-accent" data-filter="view">Морска Гледка</button>
+            <button class="filter-btn px-6 py-2 rounded-full border border-white/20 text-gray-300 text-xs font-bold uppercase tracking-wider hover:border-surf-accent" data-filter="garden">Градина & Уют</button>
+        </div>
+
+        <div class="masonry-wrapper" id="gallery-grid">
+            <div class="gallery-item cursor-pointer group" data-category="food">
+                <img src="img/exterior-3.jpg" loading="lazy" alt="скара на въглища сарафово" class="w-full h-auto object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center pointer-events-none">
+                    <i class="fas fa-search-plus text-surf-accent text-3xl"></i>
+                </div>
+            </div>
+            
+            <div class="gallery-item cursor-pointer group" data-category="view">
+                <img src="img/exterior-4.jpg" loading="lazy" alt="морска гледка бургас сарафово" class="w-full h-auto object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center pointer-events-none">
+                    <i class="fas fa-search-plus text-surf-accent text-3xl"></i>
+                </div>
+            </div>
+            
+            <div class="gallery-item cursor-pointer group" data-category="garden">
+                <img src="img/exterior-5.jpg" loading="lazy" alt="лятна градина ресторант екатерина" class="w-full h-auto object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center pointer-events-none">
+                    <i class="fas fa-search-plus text-surf-accent text-3xl"></i>
+                </div>
+            </div>
+            
+            <div class="gallery-item cursor-pointer group" data-category="food">
+                <img src="img/porch-1.jpg" loading="lazy" alt="прясна риба черно море" class="w-full h-auto object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center pointer-events-none">
+                    <i class="fas fa-search-plus text-surf-accent text-3xl"></i>
+                </div>
+            </div>
+            
+            <div class="gallery-item cursor-pointer group" data-category="garden">
+                <img src="img/porch-2.jpg" loading="lazy" alt="атмосфера в бирария екатерина" class="w-full h-auto object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center pointer-events-none">
+                    <i class="fas fa-search-plus text-surf-accent text-3xl"></i>
+                </div>
+            </div>
+            
+            <div class="gallery-item cursor-pointer group" data-category="food">
+                <img src="img/mnogo-konteineri.jpg" loading="lazy" alt="традиционна българска кухня" class="w-full h-auto object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center pointer-events-none">
+                    <i class="fas fa-search-plus text-surf-accent text-3xl"></i>
+                </div>
+            </div>
+            
+            <div class="gallery-item cursor-pointer group" data-category="view">
+                <img src="img/gallery-07.webp" loading="lazy" alt="залез над морето сарафово" class="w-full h-auto object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80';">
+                <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center pointer-events-none">
+                    <i class="fas fa-search-plus text-surf-accent text-3xl"></i>
+                </div>
+            </div>
+            
+            <div class="gallery-item cursor-pointer group" data-category="food">
+                <img src="img/gallery-08.webp" loading="lazy" alt="специалитети на скара" class="w-full h-auto object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80';">
+                <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center pointer-events-none">
+                    <i class="fas fa-search-plus text-surf-accent text-3xl"></i>
+                </div>
+            </div>
+            
+            <div class="gallery-item cursor-pointer group" data-category="garden">
+                <img src="img/gallery-09.webp" loading="lazy" alt="уют и комфорт на морето" class="w-full h-auto object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80';">
+                <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center pointer-events-none">
+                    <i class="fas fa-search-plus text-surf-accent text-3xl"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-16">
+            <a href="https://www.instagram.com/birariqekaterina/" target="_blank" class="inline-flex items-center gap-3 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-bold hover:bg-surf-accent hover:text-ocean-900 hover:border-surf-accent transition-colors shadow-lg">
+                <i class="fab fa-instagram text-2xl"></i> Последвайте ни за още кадри
             </a>
-        </div>
-
-        <button id="mobile-menu-btn" class="md:hidden text-blue-900 focus:outline-none p-2 text-2xl">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 absolute w-full left-0 top-20 shadow-xl flex flex-col p-4 space-y-4">
-        <a href="menu-bg.html" class="text-lg font-black text-blue-900 block p-3 bg-blue-50 rounded border border-blue-100 text-center uppercase">🍽️ Отвори Менюто</a>
-        <a href="gallery.html" class="mobile-link text-lg font-bold text-gray-800 block p-2">📸 Галерия</a>
-        <a href="events.html" class="mobile-link text-lg font-bold text-gray-800 block p-2">🎉 Събития</a>
-        <a href="about.html" class="mobile-link text-lg font-bold text-gray-800 block p-2">⚓ За нас</a>
-        <div class="flex gap-4 p-2">
-            <a href="https://www.facebook.com/p/%D0%91%D0%B8%D1%80%D0%B0%D1%80%D0%B8%D1%8F-%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B0-100091163343657/" target="_blank" class="text-2xl text-blue-600"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/birariqekaterina/" target="_blank" class="text-2xl text-pink-600"><i class="fab fa-instagram"></i></a>
-        </div>
-        <a href="tel:0884802552" class="text-lg font-black text-center text-white bg-amber-500 block p-4 rounded-xl shadow-md uppercase">📞 Резервация</a>
-    </div>
-</nav>
-
-    <main class="container mx-auto px-4 pb-20">
-        <div class="text-center mb-10">
-            <h1 class="text-5xl md:text-6xl text-slate-900 mb-4">Галерия</h1>
-            <div class="w-20 h-1 bg-[#F5A623] mx-auto"></div>
-        </div>
-
-        <div class="flex flex-wrap justify-center gap-2 mb-12">
-            <button class="filter-btn active px-6 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase" data-filter="all">Всичко</button>
-            <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase" data-filter="food">Храна</button>
-            <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase" data-filter="view">Гледка</button>
-            <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase" data-filter="garden">Градина</button>
-        </div>
-
-        <div class="masonry-wrapper" id="gallery">
-            <div class="gallery-item cursor-pointer" data-category="food">
-                <img src="img/exterior-3.jpg" loading="lazy" alt="cкapа на выглиша сарадово" class="w-full">
-            </div>
-            <div class="gallery-item cursor-pointer" data-category="view">
-                <img src="img/exterior-4.jpg" loading="lazy" alt="морска гледка бургас сарафово" class="w-full">
-            </div>
-            <div class="gallery-item cursor-pointer" data-category="garden">
-                <img src="img/exterior-5.jpg" loading="lazy" alt="лятна градина ресторант екатерина" class="w-full">
-            </div>
-            <div class="gallery-item cursor-pointer" data-category="food">
-                <img src="img/porch-1.jpg" loading="lazy" alt="прясна риба черно море" class="w-full">
-            </div>
-            <div class="gallery-item cursor-pointer" data-category="garden">
-                <img src="img/porch-2.jpg" loading="lazy" alt="атмосфера в бирария екатерина" class="w-full">
-            </div>
-            <div class="gallery-item cursor-pointer" data-category="food">
-                <img src="img/mnogo-konteineri.jpg" loading="lazy" alt="традиционна българска кухня" class="w-full">
-            </div>
-            <div class="gallery-item cursor-pointer" data-category="view">
-                <img src="img/gallery-07.webp" loading="lazy" alt="залез над морето сарафово" class="w-full">
-            </div>
-            <div class="gallery-item cursor-pointer" data-category="food">
-                <img src="img/gallery-08.webp" loading="lazy" alt="специалитети на скара" class="w-full">
-            </div>
-            <div class="gallery-item cursor-pointer" data-category="garden">
-                <img src="img/gallery-09.webp" loading="lazy" alt="уют и комфорт на морето" class="w-full">
-            </div>
         </div>
     </main>
 
     <div id="lightbox">
-        <button class="absolute top-8 right-8 text-3xl" id="close-lb">&times;</button>
-        <img id="lightbox-img" src="" alt="Zoomed view">
-        <div class="absolute bottom-10 flex gap-4">
-            <button id="prev" class="bg-white/50 p-4 rounded-full">←</button>
-            <button id="next" class="bg-white/50 p-4 rounded-full">→</button>
+        <button class="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-surf-accent hover:text-ocean-900 text-white rounded-full flex items-center justify-center text-2xl transition-colors z-50 shadow-lg" id="close-lb">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <img id="lightbox-img" src="" alt="Увеличена снимка Бирария Екатерина">
+        
+        <div class="absolute bottom-10 flex gap-6 z-50">
+            <button id="prev" class="w-14 h-14 bg-ocean-900/80 border border-white/20 text-white hover:bg-surf-accent hover:text-ocean-900 hover:border-surf-accent rounded-full flex items-center justify-center text-xl transition-colors shadow-lg backdrop-blur-sm">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="next" class="w-14 h-14 bg-ocean-900/80 border border-white/20 text-white hover:bg-surf-accent hover:text-ocean-900 hover:border-surf-accent rounded-full flex items-center justify-center text-xl transition-colors shadow-lg backdrop-blur-sm">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </div>
 
-   <footer class="bg-slate-900 text-slate-300 pt-16 pb-8 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-            <div>
-                <div class="font-black text-2xl tracking-tighter text-white uppercase mb-6">
-                    ЕКАТЕРИНА <span class="text-amber-500">2026</span>
+    <footer class="bg-ocean-900 text-gray-400 pt-16 pb-8 border-t border-white/5 mt-auto">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="font-outfit font-black text-2xl tracking-tighter text-white uppercase mb-6 flex items-center gap-2">
+                        <i class="fas fa-water text-surf-accent"></i> ЕКАТЕРИНА
+                    </div>
+                    <p class="text-sm font-medium leading-relaxed mb-6">
+                        Къде по-добре да си пиеш кафето, от място с гледка към морето?! Заповядайте за храната, останете за атмосферата.
+                    </p>
                 </div>
-                <p class="text-sm opacity-70 leading-relaxed mb-6">
-                    Къде по-добре да си пиеш кафето, от място с гледка към морето?! Заповядайте за храната, останете за гледката.
-                </p>
-                <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-pink-600 transition"><i class="fab fa-instagram"></i></a>
+
+                <div>
+                    <h3 class="text-white font-black font-outfit uppercase tracking-wide mb-6">Контакти</h3>
+                    <ul class="space-y-4 font-medium text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-surf-accent mt-1"></i>
+                            <span>ул. "Черно море" 30<br>Сарафово, Бургас 8016</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-surf-accent"></i>
+                            <a href="tel:0884802552" class="hover:text-surf-accent transition text-white">088 480 2552</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-clock text-surf-accent"></i>
+                            <span>Всеки ден: 10:00 - 23:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-black font-outfit uppercase tracking-wide mb-6">Бързи Връзки</h3>
+                    <ul class="space-y-3 text-sm font-medium uppercase tracking-wide">
+                        <li><a href="index.html" class="hover:text-surf-accent transition">🏠 Начало</a></li>
+                        <li><a href="menu-bg.html" class="hover:text-surf-accent transition">🍽️ Дигитално Меню</a></li>
+                        <li><a href="events.html" class="hover:text-surf-accent transition">🎉 Събития</a></li>
+                        <li><a href="https://share.google/kE9FB4fCrkyniDMVr" target="_blank" class="hover:text-surf-accent transition">📍 Google Maps Упътване</a></li>
+                    </ul>
+                </div>
+
+                <div class="h-80 md:h-80 rounded-2xl overflow-hidden shadow-2xl border border-white/10 relative bg-ocean-800 p-1">
+                    <iframe 
+                        title="Бирария Екатерина - Сарафово Бургас"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d183.67639530892637!2d27.523919302294125!3d42.559065485314214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a696b82d5d968d%3A0x533fa38e8c972c7e!2z0LHQuNGA0LDRgNC40Y8g0JXQutCw0YLQtdGA0LjQvdCw!5e0!3m2!1sen!2sbg!4v1772063592674!5m2!1sen!2sbg" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="w-full h-full rounded-xl opacity-90 hover:opacity-100 transition-opacity">
+                    </iframe>
                 </div>
             </div>
 
-            <div>
-                <h3 class="text-white font-bold uppercase tracking-wider mb-6 border-b border-slate-700 pb-2 w-max">Контакти</h3>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-map-marker-alt text-amber-500 mt-1"></i>
-                        <span>гр. Бургас, кв. Сарафово,<br>ул. "Черно море" 30</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-phone text-amber-500"></i>
-                        <a href="tel:0884802552" class="hover:text-white transition font-bold">088 480 2552</a>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-clock text-amber-500"></i>
-                        <span>Всеки ден: 10:00 - 23:00</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold uppercase tracking-wider mb-6 border-b border-slate-700 pb-2 w-max">Връзки</h3>
-                <ul class="space-y-3 text-sm font-medium">
-                    <li><a href="menu-bg.html" class="hover:text-amber-500 transition">🍽️ Дигитално Меню</a></li>
-                    <li><a href="gallery.html" class="hover:text-amber-500 transition">📸 Фотогалерия</a></li>
-                    <li><a href="events.html" class="hover:text-amber-500 transition">🎉 Сватби и Събития</a></li>
-                    <li><a href="about.html" class="hover:text-amber-500 transition">⚓ История и Мисия</a></li>
-                </ul>
-            </div>
-
-            <div class="h-64 rounded-xl overflow-hidden shadow-lg border border-slate-700 relative">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2941.1!2d27.52!3d42.56!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDMzJzM2LjAiTiAyN8KwMzEnMTIuMCJF!5e0!3m2!1sbg!2sbg!4v1621234567890" 
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="">
-                </iframe>
+            <div class="border-t border-white/10 pt-8 text-center text-xs opacity-60 uppercase tracking-widest font-bold">
+                © 2026 Бирария Екатерина. Всички права запазени. Дизайн от GG Solutions.
             </div>
         </div>
-
-        <div class="border-t border-slate-800 pt-8 text-center text-xs opacity-40 uppercase tracking-widest">
-            © 2026 Бирария Екатерина. Дизайн от GG Solutions.
-        </div>
-    </div>
-</footer>
-
-    <script>
-        // Filtering
-        const btns = document.querySelectorAll('.filter-btn');
-        const items = document.querySelectorAll('.gallery-item');
-
-        btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                btns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                
-                items.forEach(item => {
-                    if (filter === 'all' || item.dataset.category === filter) {
-                        item.classList.remove('hidden');
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
-            });
-        });
-
-        // Lightbox Logic
-        const lightbox = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        const closeBtn = document.getElementById('close-lb');
-        let currentIdx = 0;
-        let visibleItems = [];
-
-        const openLightbox = (index) => {
-            visibleItems = Array.from(items).filter(i => !i.classList.contains('hidden'));
-            currentIdx = index;
-            lbImg.src = visibleItems[currentIdx].querySelector('img').src;
-            lightbox.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        };
-
-        items.forEach((item, idx) => {
-            item.addEventListener('click', () => {
-                const visibleArray = Array.from(items).filter(i => !i.classList.contains('hidden'));
-                const newIdx = visibleArray.indexOf(item);
-                openLightbox(newIdx);
-            });
-        });
-
-        // Zoom toggle
-        lbImg.addEventListener('click', (e) => {
-            e.stopPropagation();
-            lbImg.classList.toggle('zoomed');
-        });
-
-        // Swipe & Navigation
-        const nextImg = () => {
-            currentIdx = (currentIdx + 1) % visibleItems.length;
-            lbImg.src = visibleItems[currentIdx].querySelector('img').src;
-            lbImg.classList.remove('zoomed');
-        };
-
-        const prevImg = () => {
-            currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
-            lbImg.src = visibleItems[currentIdx].querySelector('img').src;
-            lbImg.classList.remove('zoomed');
-        };
-
-        document.getElementById('next').addEventListener('click', (e) => { e.stopPropagation(); nextImg(); });
-        document.getElementById('prev').addEventListener('click', (e) => { e.stopPropagation(); prevImg(); });
-
-        // Touch Swipe
-        let touchStartX = 0;
-        lightbox.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-        lightbox.addEventListener('touchend', e => {
-            let touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) nextImg();
-            if (touchStartX - touchEndX < -50) prevImg();
-        });
-
-        // Close
-        const closeLB = () => {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            lbImg.classList.remove('zoomed');
-        };
-
-        closeBtn.addEventListener('click', closeLB);
-        lightbox.addEventListener('click', closeLB);
-    </script>
+    </footer>
+    <script src="js/script.js"></script>
 </body>
 </html>
