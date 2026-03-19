@@ -4,17 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ═══════════════════════════════════════════════
-       PRIMARY SEO META
-  ═══════════════════════════════════════════════ -->
   <title>Сватби и Събития | Бирария Екатерина – Сарафово, Бургас</title>
   <meta name="description" content="Организирайте вашата сватба, рожден ден или фирмено парти на морето в Бирария Екатерина, Сарафово. Морска гледка, градина, скара и риба. Свържете се с нас днес." />
   <meta name="keywords" content="сватба на морето, сватби сарафово, наем на зала сарафово, фирмено парти бургас, рожден ден на морето, бирария екатерина, събития бургас, сватбена зала бургас" />
   <link rel="canonical" href="https://birariaekaterina.bg/events.html" />
 
-  <!-- ═══════════════════════════════════════════════
-       OPEN GRAPH — Facebook / Viber / WhatsApp
-  ═══════════════════════════════════════════════ -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="bg_BG" />
   <meta property="og:title" content="Сватби и Събития на Морето | Бирария Екатерина" />
@@ -23,9 +17,6 @@
   <meta property="og:url" content="https://birariaekaterina.bg/events.html" />
   <meta property="og:site_name" content="Бирария Екатерина" />
 
-  <!-- ═══════════════════════════════════════════════
-       STRUCTURED DATA — Event Venue (JSON-LD)
-  ═══════════════════════════════════════════════ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -58,9 +49,6 @@
   }
   </script>
 
-  <!-- ═══════════════════════════════════════════════
-       TAILWIND + FONTS
-  ═══════════════════════════════════════════════ -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -68,21 +56,21 @@
 
   <style>
     /* ═══════════════════════════════════
-       DESIGN TOKENS
+       DESIGN TOKENS (UPDATED TO LIGHT THEME)
     ═══════════════════════════════════ */
     :root {
       --amber:      #F5A623;
-      --amber-dark: #C17F1A;
-      --amber-glow: rgba(245,166,35,0.18);
+      --amber-dark: #d97706;
+      --amber-glow: rgba(245,166,35,0.15);
       --gold:       #D4AF37;
-      --sea:        #1A3A4A;
-      --sea-light:  #1E4D63;
-      --dark:       #0D1B22;
-      --darker:     #080F14;
-      --glass-bg:   rgba(255,255,255,0.06);
-      --glass-border: rgba(255,255,255,0.12);
-      --text:       #E8DCC8;
-      --text-muted: #8A9BAA;
+      --sea:        #ffffff;
+      --sea-light:  #f1f5f9;
+      --dark:       #ffffff;
+      --darker:     #f8fafc;
+      --glass-bg:   rgba(255,255,255,0.85);
+      --glass-border: rgba(226,232,240,0.8);
+      --text:       #1e3a8a;
+      --text-muted: #475569;
     }
 
     * { box-sizing: border-box; }
@@ -114,10 +102,10 @@
        NAVBAR
     ═══════════════════════════════════ */
     .navbar {
-      background: rgba(8,15,20,0.75);
+      background: rgba(255,255,255,0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(245,166,35,0.2);
+      border-bottom: 1px solid rgba(226,232,240,0.8);
     }
 
     /* ═══════════════════════════════════
@@ -125,7 +113,7 @@
     ═══════════════════════════════════ */
     .hero-bg {
       background:
-        linear-gradient(160deg, rgba(8,15,20,0.55) 0%, rgba(13,27,34,0.82) 60%, rgba(8,15,20,0.97) 100%),
+        linear-gradient(160deg, rgba(255,255,255,0.7) 0%, rgba(248,250,252,0.85) 60%, rgba(248,250,252,1) 100%),
         url('img/events-hero.jpg') center center / cover no-repeat;
       min-height: 100svh;
     }
@@ -135,7 +123,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(26,58,74,0.4) 0%, transparent 70%);
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(30,58,138,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -176,7 +164,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(8,15,20,0.92) 100%);
+      background: linear-gradient(180deg, transparent 40%, rgba(248,250,252,0.95) 100%);
       pointer-events: none;
     }
 
@@ -218,7 +206,7 @@
       align-items: center;
       gap: 0.5rem;
       background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
-      color: var(--darker);
+      color: #0f172a;
       font-family: 'Jost', sans-serif;
       font-weight: 600;
       letter-spacing: 0.04em;
@@ -328,9 +316,9 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 50;
-      background: rgba(8,15,20,0.92);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(16px);
-      border-top: 1px solid rgba(245,166,35,0.25);
+      border-top: 1px solid rgba(226,232,240,0.8);
       padding: 0.75rem 1rem;
       display: flex;
       gap: 0.5rem;
@@ -352,13 +340,9 @@
 
 <body class="antialiased">
 
-  <!-- ═══════════════════════════════════════════════════
-       NAVBAR
-  ═══════════════════════════════════════════════════ -->
   <nav class="navbar fixed top-0 left-0 right-0 z-40 px-4 md:px-8 py-3">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
 
-      <!-- Logo -->
       <a href="index.html" class="flex items-center gap-2 group">
         <span class="text-amber-400 text-2xl">🍺</span>
         <span class="font-['Playfair_Display'] text-lg font-bold tracking-wide" style="color:var(--text)">
@@ -366,15 +350,14 @@
         </span>
       </a>
 
-      <!-- Desktop Links -->
       <div class="hidden md:flex items-center gap-6 text-sm font-medium" style="color:var(--text-muted)">
-        <a href="index.html" class="hover:text-amber-400 transition-colors">Начало</a>
-        <a href="menu-bg.html" class="hover:text-amber-400 transition-colors">Меню</a>
-        <a href="events.html" class="text-amber-400 border-b border-amber-400 pb-0.5">Събития</a>
+        <a href="index.html" class="hover:text-blue-900 transition-colors uppercase">Начало</a>
+        <a href="menu-bg.html" class="hover:text-blue--900 transition-colors uppercase">Меню</a>
+        <a href="events.html" class="text-amber-400 border-b border-blue--900 pb-0.5 uppercase">Събития</a>
+        <a href="about.html" class="hover:text-blue-900 transition uppercase">За нас</a>
         <a href="tel:+359884802552" class="btn-amber text-sm py-2 px-4">📞 088 480 2552</a>
       </div>
 
-      <!-- Mobile hamburger -->
       <button id="nav-toggle" class="md:hidden p-2 rounded-lg" style="color:var(--text)" aria-label="Меню">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -382,7 +365,6 @@
       </button>
     </div>
 
-    <!-- Mobile dropdown -->
     <div id="mobile-menu" class="md:hidden mt-3 glass rounded-xl p-4 mx-4">
       <div class="flex flex-col gap-3 text-sm font-medium" style="color:var(--text-muted)">
         <a href="index.html" class="hover:text-amber-400 transition-colors py-1">Начало</a>
@@ -395,12 +377,8 @@
   </nav>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       HERO
-  ═══════════════════════════════════════════════════ -->
   <section class="hero-bg relative flex items-center justify-center text-center px-4 pt-20" style="min-height:100svh;">
 
-    <!-- Decorative particles -->
     <div class="particle" style="left:15%;bottom:30%;animation-delay:0s;"></div>
     <div class="particle" style="left:25%;bottom:20%;animation-delay:1.1s;"></div>
     <div class="particle" style="left:72%;bottom:35%;animation-delay:0.5s;"></div>
@@ -409,9 +387,8 @@
 
     <div class="relative z-10 max-w-3xl mx-auto py-20">
 
-      <!-- Eyebrow tag -->
       <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest uppercase" style="color:var(--amber);border-color:rgba(245,166,35,0.35)">
-        🌊 Сарафово, Бургас &nbsp;·&nbsp; Морска гледка
+        🌊 Сарафово, Бургас  ·  Морска гледка
       </div>
 
       <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-5" style="font-family:'Playfair Display',serif;">
@@ -429,7 +406,6 @@
         <a href="https://wa.me/359884802552?text=Здравейте!%20Интересувам%20се%20от%20организиране%20на%20събитие%20в%20Бирария%20Екатерина."
            target="_blank" rel="noopener"
            class="btn-whatsapp">
-          <!-- WhatsApp SVG icon -->
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
@@ -438,7 +414,6 @@
         <a href="tel:+359884802552" class="btn-ghost">📞 088 480 2552</a>
       </div>
 
-      <!-- Scroll indicator -->
       <div class="mt-16 flex flex-col items-center gap-2 opacity-50">
         <span class="text-xs tracking-widest uppercase" style="color:var(--text-muted)">Открийте повече</span>
         <div class="w-px h-10 bg-gradient-to-b from-amber-400 to-transparent"></div>
@@ -448,9 +423,6 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       STATS STRIP
-  ═══════════════════════════════════════════════════ -->
   <section class="py-8 px-4" style="background:var(--sea);">
     <div class="max-w-4xl mx-auto">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -475,19 +447,13 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       WAVE DIVIDER
-  ═══════════════════════════════════════════════════ -->
   <div class="wave-divider" style="background:var(--sea);">
     <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px;width:100%;">
-      <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#080F14"/>
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#f8fafc"/>
     </svg>
   </div>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       EVENT TYPES
-  ═══════════════════════════════════════════════════ -->
   <section class="py-20 px-4" style="background:var(--darker);">
     <div class="max-w-6xl mx-auto">
 
@@ -504,10 +470,8 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <!-- Card 1: Weddings -->
         <article class="event-card glass rounded-2xl overflow-hidden reveal" role="img" aria-label="Сватби на морето">
-          <!-- Placeholder gradient when no real image exists yet -->
-          <div class="card-img" style="background:linear-gradient(135deg,#1a3a4a 0%,#0d2535 50%,#1a2a1a 100%);display:flex;align-items:center;justify-content:center;font-size:4rem;">
+          <div class="card-img" style="background:linear-gradient(135deg,#e0f2fe 0%,#bae6fd 50%,#dbeafe 100%);display:flex;align-items:center;justify-content:center;font-size:4rem;">
             💍
           </div>
           <div class="card-body">
@@ -519,9 +483,8 @@
           </div>
         </article>
 
-        <!-- Card 2: Corporate -->
         <article class="event-card glass rounded-2xl overflow-hidden reveal" role="img" aria-label="Фирмени партита">
-          <div class="card-img" style="background:linear-gradient(135deg,#1a1a3a 0%,#0d1525 50%,#2a1a1a 100%);display:flex;align-items:center;justify-content:center;font-size:4rem;">
+          <div class="card-img" style="background:linear-gradient(135deg,#f1f5f9 0%,#e2e8f0 50%,#cbd5e1 100%);display:flex;align-items:center;justify-content:center;font-size:4rem;">
             🏢
           </div>
           <div class="card-body">
@@ -533,9 +496,8 @@
           </div>
         </article>
 
-        <!-- Card 3: Birthdays -->
         <article class="event-card glass rounded-2xl overflow-hidden reveal" role="img" aria-label="Рождени дни">
-          <div class="card-img" style="background:linear-gradient(135deg,#3a1a1a 0%,#251510 50%,#1a2a1a 100%);display:flex;align-items:center;justify-content:center;font-size:4rem;">
+          <div class="card-img" style="background:linear-gradient(135deg,#fce7f3 0%,#fbcfe8 50%,#f9a8d4 100%);display:flex;align-items:center;justify-content:center;font-size:4rem;">
             🎂
           </div>
           <div class="card-body">
@@ -552,9 +514,6 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       WHY EKATERINA — FEATURES
-  ═══════════════════════════════════════════════════ -->
   <section class="py-20 px-4" style="background:var(--dark);">
     <div class="max-w-5xl mx-auto">
 
@@ -638,9 +597,6 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       CAPACITY & LOGISTICS
-  ═══════════════════════════════════════════════════ -->
   <section class="py-20 px-4" style="background:var(--darker);">
     <div class="max-w-5xl mx-auto">
 
@@ -653,7 +609,6 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 
-        <!-- Capacity bars -->
         <div class="glass rounded-2xl p-8 reveal">
           <h3 class="font-bold text-xl mb-6" style="font-family:'Playfair Display',serif;color:var(--amber)">Капацитет</h3>
 
@@ -663,7 +618,7 @@
                 <span>Закрита зала</span>
                 <span style="color:var(--amber)">до 80 гости</span>
               </div>
-              <div class="h-1.5 rounded-full" style="background:rgba(255,255,255,0.08);">
+              <div class="h-1.5 rounded-full" style="background:rgba(0,0,0,0.08);">
                 <div class="cap-bar-fill" data-width="53%"></div>
               </div>
             </div>
@@ -672,7 +627,7 @@
                 <span>Лятна градина</span>
                 <span style="color:var(--amber)">до 150 гости</span>
               </div>
-              <div class="h-1.5 rounded-full" style="background:rgba(255,255,255,0.08);">
+              <div class="h-1.5 rounded-full" style="background:rgba(0,0,0,0.08);">
                 <div class="cap-bar-fill" data-width="100%"></div>
               </div>
             </div>
@@ -681,14 +636,13 @@
                 <span>Терасата</span>
                 <span style="color:var(--amber)">до 40 гости</span>
               </div>
-              <div class="h-1.5 rounded-full" style="background:rgba(255,255,255,0.08);">
+              <div class="h-1.5 rounded-full" style="background:rgba(0,0,0,0.08);">
                 <div class="cap-bar-fill" data-width="27%"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Details list -->
         <div class="glass rounded-2xl p-8 reveal">
           <h3 class="font-bold text-xl mb-6" style="font-family:'Playfair Display',serif;color:var(--amber)">Включено в пакета</h3>
           <ul class="space-y-3 text-sm" style="color:var(--text-muted);">
@@ -724,9 +678,6 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       TESTIMONIALS
-  ═══════════════════════════════════════════════════ -->
   <section class="py-20 px-4" style="background:var(--sea);">
     <div class="max-w-5xl mx-auto">
 
@@ -771,12 +722,8 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       CTA SECTION — LEAD CAPTURE
-  ═══════════════════════════════════════════════════ -->
   <section class="py-24 px-4 text-center relative" style="background:var(--darker);">
 
-    <!-- Background glow -->
     <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(245,166,35,0.07) 0%, transparent 70%);"></div>
 
     <div class="max-w-2xl mx-auto relative z-10 reveal">
@@ -803,7 +750,6 @@
         </a>
       </div>
 
-      <!-- Address + Map link -->
       <div class="mt-8 flex flex-wrap gap-4 justify-center text-sm" style="color:var(--text-muted)">
         <span>📍 ул. Черно море 30, Сарафово, Бургас</span>
         <a href="https://maps.google.com/?q=Бирария+Екатерина+Сарафово+Бургас"
@@ -816,16 +762,13 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════════════════ -->
-  <footer class="py-10 px-4 text-center border-t" style="border-color:rgba(255,255,255,0.08);background:var(--darker);">
+  <footer class="py-10 px-4 text-center border-t" style="border-color:rgba(0,0,0,0.05);background:var(--darker);">
     <div class="max-w-4xl mx-auto">
       <div class="font-['Playfair_Display'] text-xl font-bold mb-2" style="color:var(--amber)">
         Бирария Екатерина
       </div>
       <p class="text-sm mb-4" style="color:var(--text-muted)">
-        ул. Черно море 30, Сарафово, Бургас 8019 &nbsp;|&nbsp;
+        ул. Черно море 30, Сарафово, Бургас 8019  | 
         <a href="tel:+359884802552" class="hover:text-amber-400 transition-colors">088 480 2552</a>
       </p>
       <nav class="flex flex-wrap gap-4 justify-center text-xs mb-4" style="color:var(--text-muted)">
@@ -834,16 +777,13 @@
         <a href="events.html" class="text-amber-400">Събития</a>
         <a href="privacy.html" class="hover:text-amber-400 transition-colors">Поверителност</a>
       </nav>
-      <p class="text-xs" style="color:rgba(138,155,170,0.5);">
+      <p class="text-xs" style="color:rgba(71,85,105,0.6);">
         © 2026 Бирария Екатерина. Всички права запазени.
       </p>
     </div>
   </footer>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       STICKY BOTTOM CTA (mobile only)
-  ═══════════════════════════════════════════════════ -->
   <div class="sticky-cta md:hidden" id="sticky-cta">
     <a href="https://wa.me/359884802552?text=Здравейте!%20Искам%20информация%20за%20събитие."
        target="_blank" rel="noopener"
@@ -857,9 +797,6 @@
   </div>
 
 
-  <!-- ═══════════════════════════════════════════════════
-       JAVASCRIPT
-  ═══════════════════════════════════════════════════ -->
   <script>
     /* ── Mobile nav toggle ── */
     document.getElementById('nav-toggle').addEventListener('click', function () {
@@ -906,9 +843,9 @@
     window.addEventListener('scroll', () => {
       const nav = document.querySelector('.navbar');
       if (window.scrollY > 60) {
-        nav.style.background = 'rgba(8,15,20,0.95)';
+        nav.style.background = 'rgba(255,255,255,0.98)';
       } else {
-        nav.style.background = 'rgba(8,15,20,0.75)';
+        nav.style.background = 'rgba(255,255,255,0.85)';
       }
     });
   </script>

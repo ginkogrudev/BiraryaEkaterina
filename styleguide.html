@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="bg" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Guide | Бирария Екатерина</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        playfair: ['"Playfair Display"', 'serif'],
+                        outfit: ['Outfit', 'sans-serif'], // Great for modern/retro mix
+                    },
+                    colors: {
+                        // Current Theme
+                        classic: { bg: '#f8fafc', text: '#0f172a', primary: '#1e3a8a', accent: '#f59e0b' },
+                        // Deep Ocean Theme
+                        ocean: { bg: '#0f2e3c', text: '#f8fafc', card: '#164355', accent: '#F5A623' },
+                        // Retro Surf Theme (From Logo)
+                        surf: { bg: '#fcf9f2', text: '#093a40', primary: '#006d77', accent: '#e85d04', foam: '#fff8f0' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .price-tag { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body class="bg-gray-100 antialiased p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto mb-12 text-center">
+        <h1 class="text-4xl font-black text-gray-900 mb-4">Biraria Ekaterina - Design Proposals</h1>
+        <p class="text-gray-600">Review the three distinct visual directions below. Click the buttons, check the contrast, and decide the vibe for Season 2026.</p>
+    </div>
+
+    <div class="grid xl:grid-cols-3 gap-8 max-w-full mx-auto">
+
+        <div class="bg-classic-bg text-classic-text p-8 rounded-3xl shadow-xl border border-gray-200">
+            <div class="mb-8 border-b border-gray-200 pb-4">
+                <span class="bg-gray-200 text-gray-700 text-xs font-bold px-2 py-1 rounded uppercase tracking-widest">Theme Option 1</span>
+                <h2 class="text-3xl font-black text-classic-primary mt-2 font-sans uppercase tracking-tight">Classic Coastal</h2>
+                <p class="text-sm text-gray-500 mt-2">Clean, high contrast, safe. Focuses on readability and a modern app feel.</p>
+            </div>
+
+            <div class="flex gap-2 mb-8">
+                <div class="w-12 h-12 rounded-full bg-classic-bg border border-gray-300 shadow-sm" title="Background"></div>
+                <div class="w-12 h-12 rounded-full bg-classic-text shadow-sm" title="Text"></div>
+                <div class="w-12 h-12 rounded-full bg-classic-primary shadow-sm" title="Primary"></div>
+                <div class="w-12 h-12 rounded-full bg-classic-accent shadow-sm" title="Accent"></div>
+            </div>
+
+            <div class="mb-8 space-y-2">
+                <h1 class="text-4xl font-black text-classic-primary uppercase">Heading 1</h1>
+                <h3 class="text-xl font-bold text-gray-800">Heading 3</h3>
+                <p class="text-gray-600 leading-relaxed font-sans">This is standard Inter body text. It is highly readable, neutral, and looks like a standard modern web application.</p>
+            </div>
+
+            <div class="mb-8 flex flex-wrap gap-4">
+                <button class="bg-classic-primary text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-blue-800 transition">Primary CTA</button>
+                <button class="border-2 border-classic-primary text-classic-primary px-6 py-3 rounded-full font-bold hover:bg-blue-50 transition">Secondary</button>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex justify-between items-start gap-3">
+                <div>
+                    <h3 class="font-bold text-lg text-gray-900 leading-tight">Шопска Салата <span class="text-[10px] bg-gray-100 text-gray-500 px-2 py-1 rounded-full font-bold ml-1">300гр</span></h3>
+                    <p class="text-xs text-gray-500 mt-1">Домати, краставици, печен пипер, лук, сирене.</p>
+                </div>
+                <div class="flex flex-col items-end gap-2 shrink-0">
+                    <div class="text-right leading-none">
+                        <span class="block font-black text-classic-primary text-lg price-tag">9.90 лв.</span>
+                        <span class="text-xs text-gray-400 font-semibold price-tag">€5.06</span>
+                    </div>
+                    <button class="bg-blue-50 text-classic-primary w-8 h-8 rounded-full flex items-center justify-center font-black text-xl hover:bg-classic-primary hover:text-white transition shadow-sm">+</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bg-ocean-bg text-ocean-text p-8 rounded-3xl shadow-2xl border border-white/10">
+            <div class="mb-8 border-b border-white/10 pb-4">
+                <span class="bg-ocean-card text-amber-500 border border-amber-500/30 text-xs font-bold px-2 py-1 rounded uppercase tracking-widest">Theme Option 2</span>
+                <h2 class="text-3xl font-black text-white mt-2 font-playfair italic">Deep Ocean</h2>
+                <p class="text-sm text-gray-400 mt-2">Premium, immersive, elegant. Fits evening dining, sunset views, and high-end events.</p>
+            </div>
+
+            <div class="flex gap-2 mb-8">
+                <div class="w-12 h-12 rounded-full bg-ocean-bg border border-white/20 shadow-sm" title="Background"></div>
+                <div class="w-12 h-12 rounded-full bg-ocean-card border border-white/20 shadow-sm" title="Card"></div>
+                <div class="w-12 h-12 rounded-full bg-white shadow-sm" title="Text"></div>
+                <div class="w-12 h-12 rounded-full bg-ocean-accent shadow-sm" title="Accent"></div>
+            </div>
+
+            <div class="mb-8 space-y-2">
+                <h1 class="text-4xl font-black text-white font-playfair">Heading 1</h1>
+                <h3 class="text-xl font-bold text-gray-200">Heading 3</h3>
+                <p class="text-gray-400 leading-relaxed font-sans">This pairs Playfair Display for elegant headings with Inter for readable body text on dark backgrounds.</p>
+            </div>
+
+            <div class="mb-8 flex flex-wrap gap-4">
+                <button class="bg-ocean-accent text-ocean-bg px-6 py-3 rounded-full font-bold shadow-[0_0_15px_rgba(245,166,35,0.4)] hover:bg-amber-400 transition">Primary CTA</button>
+                <button class="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-full font-bold hover:bg-white/20 transition">Secondary</button>
+            </div>
+
+            <div class="bg-ocean-card p-4 rounded-2xl shadow-lg border border-white/5 flex justify-between items-start gap-3">
+                <div>
+                    <h3 class="font-bold text-lg text-white leading-tight">Шопска Салата <span class="text-[10px] bg-white/10 text-gray-300 px-2 py-1 rounded-full font-bold ml-1">300гр</span></h3>
+                    <p class="text-xs text-gray-400 mt-1">Домати, краставици, печен пипер, лук, сирене.</p>
+                </div>
+                <div class="flex flex-col items-end gap-2 shrink-0">
+                    <div class="text-right leading-none">
+                        <span class="block font-black text-ocean-accent text-lg price-tag">9.90 лв.</span>
+                        <span class="text-xs text-gray-500 font-semibold price-tag">€5.06</span>
+                    </div>
+                    <button class="bg-white/10 text-white w-8 h-8 rounded-full flex items-center justify-center font-black text-xl hover:bg-ocean-accent hover:text-ocean-bg transition shadow-sm">+</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bg-surf-bg text-surf-text p-8 rounded-3xl shadow-xl border-4 border-surf-primary/10 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-surf-accent/10 rounded-full blur-[80px] pointer-events-none"></div>
+
+            <div class="mb-8 border-b border-surf-primary/20 pb-4 relative z-10">
+                <span class="bg-surf-primary text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-widest">Theme Option 3</span>
+                <h2 class="text-3xl font-black text-surf-accent mt-2 font-outfit uppercase">Retro Surf</h2>
+                <p class="text-sm text-surf-primary/80 mt-2">Vibrant, beachy, and fun. Pulled exactly from the colors and vibe of your new logo.</p>
+            </div>
+
+            <div class="flex gap-2 mb-8 relative z-10">
+                <div class="w-12 h-12 rounded-full bg-surf-bg border border-surf-primary/20 shadow-sm" title="Background"></div>
+                <div class="w-12 h-12 rounded-full bg-surf-text shadow-sm" title="Text"></div>
+                <div class="w-12 h-12 rounded-full bg-surf-primary shadow-sm" title="Primary Teal"></div>
+                <div class="w-12 h-12 rounded-full bg-surf-accent shadow-sm" title="Sunset Orange"></div>
+            </div>
+
+            <div class="mb-8 space-y-2 relative z-10">
+                <h1 class="text-4xl font-black text-surf-primary font-outfit uppercase tracking-tight">Heading 1</h1>
+                <h3 class="text-xl font-bold text-surf-text font-outfit">Heading 3</h3>
+                <p class="text-surf-text/80 leading-relaxed font-sans font-medium">Uses the "Outfit" font for headings to give a slightly retro, rounded, friendly beach-bar vibe, paired with Inter for reading.</p>
+            </div>
+
+            <div class="mb-8 flex flex-wrap gap-4 relative z-10">
+                <button class="bg-surf-accent text-surf-foam px-6 py-3 rounded-xl font-black font-outfit uppercase tracking-wide shadow-[4px_4px_0px_rgba(9,58,64,1)] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(9,58,64,1)] transition-all">Primary CTA</button>
+                <button class="bg-surf-foam border-2 border-surf-primary text-surf-primary px-6 py-3 rounded-xl font-black font-outfit uppercase tracking-wide hover:bg-surf-primary hover:text-white transition">Secondary</button>
+            </div>
+
+            <div class="bg-surf-foam p-4 rounded-2xl shadow-md border-2 border-surf-primary/10 flex justify-between items-start gap-3 relative z-10">
+                <div>
+                    <h3 class="font-black text-lg text-surf-primary font-outfit leading-tight">Шопска Салата <span class="text-[10px] bg-surf-accent/20 text-surf-accent px-2 py-1 rounded-md font-black font-sans ml-1 uppercase">300гр</span></h3>
+                    <p class="text-xs text-surf-text/70 mt-1 font-medium">Домати, краставици, печен пипер, лук, сирене.</p>
+                </div>
+                <div class="flex flex-col items-end gap-2 shrink-0">
+                    <div class="text-right leading-none">
+                        <span class="block font-black text-surf-accent text-xl font-outfit price-tag">9.90 лв.</span>
+                        <span class="text-xs text-surf-primary/60 font-bold price-tag">€5.06</span>
+                    </div>
+                    <button class="bg-surf-primary text-white w-8 h-8 rounded-lg flex items-center justify-center font-black text-xl hover:bg-surf-accent transition shadow-[2px_2px_0px_rgba(9,58,64,0.5)]">+</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

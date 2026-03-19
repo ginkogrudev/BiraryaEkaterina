@@ -2,22 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- GLOBAL --- */
-html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
-body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
-
-/* --- UTILITIES --- */
-.hide-scrollbar::-webkit-scrollbar { display: none; }
-.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-.glass-nav {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+/* --- 1. GLOBAL SETTINGS --- */
+html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* Prevent Price Wrapping */
+body {
+    /* Fallback if Tailwind hasn't loaded yet */
+    background-color: #0a1a24; /* ocean-900 */
+    color: #d1d5db; /* gray-300 */
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- 2. UTILITIES --- */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .price-container {
     white-space: nowrap;
     flex-shrink: 0;
@@ -29,63 +35,71 @@ body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
     font-variant-numeric: tabular-nums;
 }
 
-/* --- COMPONENTS --- */
+/* --- 3. GLASSMORPHISM (Dark Premium Theme) --- */
+.glass-nav {
+    background: rgba(10, 26, 36, 0.85); /* ocean-900 with transparency */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(245, 166, 35, 0.15); /* surf-accent */
+    transition: top 0.3s ease-in-out;
+}
+
+.glass-card {
+    background: rgba(22, 67, 85, 0.4); /* ocean-card with transparency */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* --- 4. MENU COMPONENTS (Adapted for Dark Theme) --- */
 /* The "Instagram Story" Category Pill */
 .cat-pill {
     @apply relative w-20 h-20 rounded-xl overflow-hidden border-2 border-transparent transition-all flex-shrink-0 snap-start;
 }
 .cat-pill.active {
-    @apply border-amber-500 transform scale-105 shadow-md;
+    @apply border-[#F5A623] transform scale-105 shadow-[0_0_15px_rgba(245,166,35,0.4)];
 }
 .cat-pill img {
-    @apply absolute inset-0 w-full h-full object-cover transition-opacity duration-300;
+    @apply absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-70;
+}
+.cat-pill.active img {
+    @apply opacity-100;
 }
 .cat-pill span {
-    @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white text-[10px] font-bold text-center py-1 truncate px-1;
+    @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0a1a24]/90 to-transparent text-white text-[10px] font-black font-sans text-center py-1 truncate px-1 uppercase tracking-wider;
 }
 
 /* Menu Card Standard */
 .menu-card {
-    @apply bg-white p-4 rounded-2xl shadow-sm border border-gray-100 relative flex justify-between items-start gap-3 transition-transform duration-150;
-    min-height: 100px; /* Ensure space for description */
+    @apply p-4 rounded-2xl relative flex justify-between items-start gap-3 transition-transform duration-150;
+    /* Replaces the old bg-white with the new dark glass-card logic */
+    background: rgba(22, 67, 85, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: 100px;
 }
-.menu-card:active { transform: scale(0.98); }
+.menu-card:active { 
+    transform: scale(0.98); 
+}
 
 /* The Unified "+" Button */
 .add-btn {
-    @apply bg-blue-50 text-blue-900 w-10 h-10 rounded-full flex items-center justify-center font-black text-2xl hover:bg-blue-900 hover:text-white transition-colors shadow-sm flex-shrink-0;
-    /* Positioning logic handled by flexbox in card usually, or absolute if needed */
+    @apply bg-white/10 text-white w-10 h-10 rounded-xl flex items-center justify-center font-black text-2xl hover:bg-[#F5A623] hover:text-[#0a1a24] transition-colors shadow-sm flex-shrink-0;
 }
 
 /* Section Titles */
 .section-header {
-    @apply flex items-center gap-3 mb-6 pt-4 border-b-2 border-amber-100 pb-2;
+    @apply flex items-center gap-3 mb-6 pt-4 border-b border-white/10 pb-2;
 }
 .section-title {
-    @apply text-2xl font-black text-blue-900 uppercase italic tracking-tighter;
+    /* Using Outfit font for the fun/premium hybrid vibe */
+    @apply text-3xl font-black text-white uppercase tracking-wide;
+    font-family: 'Outfit', sans-serif;
 }
 
-/* Add these to css/style.css if missing */
-.glass-nav {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
-/* Ensure the glass nav transition is smooth */
-.glass-nav {
-    transition: top 0.3s ease-in-out;
-}
-
-/* Ensure the glass nav transition is smooth */
-.glass-nav {
-    transition: top 0.3s ease-in-out;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
-/* --- BEER SCROLL ANIMATION --- */
+/* --- 5. ANIMATIONS --- */
+/* Beer Tracker Scroll Animation */
 .beer-bubbles {
     position: absolute;
     width: 100%;
@@ -105,11 +119,23 @@ body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
     opacity: 1;
 }
 
-/* Simple fade in animation */
+/* UI Enhancements */
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Custom Text Selection to match branding */
+::selection {
+    background: #F5A623;
+    color: #0a1a24;
 }
