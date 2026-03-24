@@ -91,6 +91,64 @@
         </div>
     </section>
 
+    <section id="easter-party" class="py-20 bg-ocean-900 border-b border-white/5 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                
+                <div class="glass-card rounded-3xl overflow-hidden shadow-xl flex flex-col">
+                    <div class="h-64 overflow-hidden">
+                        <img src="img/Menu2.jpg" alt="Физическо меню Бирария Екатерина" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="text-3xl font-black font-outfit text-white mb-3 uppercase tracking-wide">Истинска Храна</h3>
+                        <p class="text-gray-400 mb-6 font-medium leading-relaxed flex-1">Богат избор от ястия – автентична скара на дървени въглища, прясна черноморска риба, салати и студени напитки. Очакваме ви на брега!</p>
+                        <div class="flex items-center gap-3 text-surf-accent font-bold font-outfit uppercase tracking-wide text-sm bg-ocean-900/50 p-4 rounded-xl border border-white/5">
+                            <i class="fas fa-book-open text-2xl"></i>
+                            <span>Разгледайте менюто ни на място</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(245,166,35,0.15)] flex flex-col border-2 border-surf-accent relative group">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80" alt="Празненство" class="w-full h-full object-cover opacity-20 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-ocean-900 via-ocean-900/80 to-transparent"></div>
+                    </div>
+                    
+                    <div class="p-8 flex-1 flex flex-col items-center justify-center text-center relative z-10">
+                        <div class="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-6 shadow-lg animate-pulse">
+                            🔥 Само 80 Места!
+                        </div>
+                        
+                        <h3 class="text-4xl font-black font-outfit text-white uppercase tracking-wide mb-1 drop-shadow-lg">Великденско Хоро</h3>
+                        <p class="text-xl text-surf-accent font-bold font-outfit tracking-widest uppercase mb-8 drop-shadow-md">със Sheyretov Sound</p>
+                        
+                        <div id="easter-timer" class="flex gap-3 md:gap-5 mb-10">
+                            <div class="flex flex-col items-center bg-ocean-900/80 border border-white/10 w-16 h-16 md:w-20 md:h-20 rounded-2xl justify-center backdrop-blur-md shadow-inner">
+                                <span id="days" class="text-3xl md:text-4xl font-black text-white font-outfit leading-none">00</span>
+                                <span class="text-[10px] text-surf-accent uppercase font-bold tracking-wider mt-1">Дни</span>
+                            </div>
+                            <div class="text-3xl font-black text-white/50 font-outfit mt-3">:</div>
+                            <div class="flex flex-col items-center bg-ocean-900/80 border border-white/10 w-16 h-16 md:w-20 md:h-20 rounded-2xl justify-center backdrop-blur-md shadow-inner">
+                                <span id="hours" class="text-3xl md:text-4xl font-black text-white font-outfit leading-none">00</span>
+                                <span class="text-[10px] text-surf-accent uppercase font-bold tracking-wider mt-1">Часа</span>
+                            </div>
+                            <div class="text-3xl font-black text-white/50 font-outfit mt-3">:</div>
+                            <div class="flex flex-col items-center bg-ocean-900/80 border border-white/10 w-16 h-16 md:w-20 md:h-20 rounded-2xl justify-center backdrop-blur-md shadow-inner">
+                                <span id="minutes" class="text-3xl md:text-4xl font-black text-white font-outfit leading-none">00</span>
+                                <span class="text-[10px] text-surf-accent uppercase font-bold tracking-wider mt-1">Мин</span>
+                            </div>
+                        </div>
+
+                        <a href="velikdensko-horo.html" class="w-full bg-surf-accent text-ocean-900 px-6 py-4 rounded-xl font-black font-outfit uppercase tracking-wide text-lg hover:-translate-y-1 transition-transform shadow-[0_0_20px_rgba(245,166,35,0.4)] flex items-center justify-center gap-2">
+                            <i class="fas fa-info-circle"></i> ВИЖ ПОВЕЧЕ & РЕЗЕРВИРАЙ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-8 bg-ocean-800 border-b border-white/5 z-10 relative">
         <div class="max-w-7xl mx-auto px-4 flex justify-center">
             <a href="#location" class="flex items-center gap-4 bg-ocean-900 p-4 pr-8 rounded-2xl border border-white/10 shadow-lg hover:shadow-xl hover:border-surf-accent/30 transition group cursor-pointer">
@@ -355,5 +413,36 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // SET THE DATE HERE! (Format: "Month DD, YYYY HH:MM:SS")
+            const countDownDate = new Date("Apr 11, 2026 19:00:00").getTime();
+
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                const daysEl = document.getElementById("days");
+                const hoursEl = document.getElementById("hours");
+                const minutesEl = document.getElementById("minutes");
+
+                if (!daysEl || !hoursEl || !minutesEl) return;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("easter-timer").innerHTML = "<div class='text-2xl font-black font-outfit text-surf-accent uppercase'>Събитието Започна!</div>";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                daysEl.innerText = days;
+                hoursEl.innerText = hours < 10 ? '0' + hours : hours;
+                minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
