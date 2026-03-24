@@ -1,176 +1,15 @@
-const menuData = [
-    { id: 1, category: 'beer', name: 'Draft Bulgarian Lager', price: '4.50 BGN', desc: 'Ice cold, local brew.' },
-    { id: 2, category: 'food', name: 'Fresh Fried Sprats (Tsatsa)', price: '8.90 BGN', desc: 'The classic seaside snack.' },
-    { id: 3, category: 'coffee', name: 'Espresso', price: '3.00 BGN', desc: 'Premium Arabica with a view.' },
-    { id: 4, category: 'food', name: 'Shopska Salad', price: '9.50 BGN', desc: 'Traditional Bulgarian salad.' }
-];
-
-// --- MOBILE MENU TOGGLE ---
-document.addEventListener('DOMContentLoaded', () => {
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    if (menuBtn && mobileMenu) {
-        // Toggle Menu
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            const icon = menuBtn.querySelector('i');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            }
-        });
-
-        // Close menu when clicking a link
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuBtn.querySelector('i').classList.remove('fa-times');
-                menuBtn.querySelector('i').classList.add('fa-bars');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                menuBtn.querySelector('i').classList.remove('fa-times');
-                menuBtn.querySelector('i').classList.add('fa-bars');
-            }
-        });
-    }
-});
-
-const container = document.getElementById('menu-container');
-
-function filterMenu(category) {
-    // Update Tab UI
-    document.querySelectorAll('.menu-tab').forEach(tab => {
-        tab.classList.remove('active');
-        if(tab.innerText.toLowerCase() === category) tab.classList.add('active');
-    });
-
-    // Filter Logic
-    const filtered = category === 'all' 
-        ? menuData 
-        : menuData.filter(item => item.category === category);
-
-    renderMenu(filtered);
-}
-
-function renderMenu(items) {
-    container.innerHTML = items.map(item => `
-        <div class="menu-item bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-            <div>
-                <h3 class="font-bold text-lg text-blue-900">${item.name}</h3>
-                <p class="text-sm text-gray-500">${item.desc}</p>
-            </div>
-            <div class="font-bold text-amber-600">${item.price}</div>
-        </div>
-    `).join('');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. MOBILE MENU LOGIC ---
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navbar = document.getElementById('navbar');
-    const banner = document.getElementById('promo-banner');
-
-    if (menuBtn && mobileMenu) {
-        // Toggle Function
-        const toggleMenu = () => {
-            const isHidden = mobileMenu.classList.contains('hidden');
-            const icon = menuBtn.querySelector('i');
-            
-            if (isHidden) {
-                mobileMenu.classList.remove('hidden');
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                mobileMenu.classList.add('hidden');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        };
-
-        // Click Events
-        menuBtn.addEventListener('click', toggleMenu);
-
-        // Close on Link Click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuBtn.querySelector('i').classList.remove('fa-times');
-                menuBtn.querySelector('i').classList.add('fa-bars');
-            });
-        });
-
-        // Close on Click Outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                menuBtn.querySelector('i').classList.remove('fa-times');
-                menuBtn.querySelector('i').classList.add('fa-bars');
-            }
-        });
-    }
-
-    // --- 2. SMART NAV POSITIONING (Fixes the Gap) ---
-    const adjustNavPosition = () => {
-        if (!banner || !navbar) return;
-        
-        const bannerHeight = banner.getBoundingClientRect().height;
-        const scrollY = window.scrollY;
-
-        // If we are at the very top, push nav down by banner height
-        // If we scroll down even 1px, snap nav to top (0px)
-        if (scrollY > 0) {
-            navbar.style.top = '0px';
-        } else {
-            navbar.style.top = `${bannerHeight}px`;
-        }
-    };
-
-    // Run on Scroll and Resize
-    window.addEventListener('scroll', adjustNavPosition);
-    window.addEventListener('resize', adjustNavPosition);
-    
-    // Initial Calc
-    adjustNavPosition();
-});
-
-
-
-// Initial Load
-window.addEventListener('DOMContentLoaded', () => renderMenu(menuData));
-
-// Mobile Menu Toggle
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-    
-    // Optional: Prevent scrolling when menu is open
-    // document.body.classList.toggle('overflow-hidden');
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. MOBILE MENU LOGIC ---
+    // ═══════════════════════════════════
+    // 1. MOBILE MENU LOGIC
+    // ═══════════════════════════════════
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const navbar = document.getElementById('navbar');
-    const banner = document.getElementById('promo-banner');
 
     if (menuBtn && mobileMenu) {
         const toggleMenu = () => {
             const isHidden = mobileMenu.classList.contains('hidden');
             const icon = menuBtn.querySelector('i');
-            
             if (isHidden) {
                 mobileMenu.classList.remove('hidden');
                 icon.classList.remove('fa-bars');
@@ -184,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         menuBtn.addEventListener('click', toggleMenu);
 
+        // Close when clicking a link
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -192,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Close when clicking outside
         document.addEventListener('click', (e) => {
             if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
@@ -201,70 +42,168 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. SMART NAV POSITIONING ---
-    const adjustNavPosition = () => {
-        if (!banner || !navbar) return;
-        
-        const bannerHeight = banner.getBoundingClientRect().height;
-        const scrollY = window.scrollY;
-
-        // Snap to top when scrolling down, respect banner at the very top
-        if (scrollY > 0) {
-            navbar.style.top = '0px';
-        } else {
-            navbar.style.top = `${bannerHeight}px`;
-        }
-    };
-
-    window.addEventListener('scroll', adjustNavPosition);
-    window.addEventListener('resize', adjustNavPosition);
-    adjustNavPosition(); // Init run
-
-
-    // --- 3. THE BEER SCROLL TRACKER ---
+    // ═══════════════════════════════════
+    // 2. BEER SCROLL TRACKER (Index Page)
+    // ═══════════════════════════════════
     const beerLiquid = document.getElementById('beer-liquid');
     const beerFoam = document.getElementById('beer-foam');
-    const beerTooltip = document.getElementById('beer-tooltip');
 
     if (beerLiquid && beerFoam) {
         window.addEventListener('scroll', () => {
-            // Calculate how far down the page we've scrolled
             const scrollTop = window.scrollY;
             const docHeight = document.body.scrollHeight - window.innerHeight;
-            
-            // Prevent division by zero and cap at 100%
             let scrollPercent = 0;
             if (docHeight > 0) {
                 scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
             }
-            
-            // Fill the liquid
             beerLiquid.style.height = `${scrollPercent}%`;
-            
-            // Move the foam up with the liquid
             beerFoam.style.bottom = `${scrollPercent}%`;
+        });
+    }
 
-            // Update tooltip text based on scroll depth
-            if (beerTooltip) {
-                if (scrollPercent < 20) {
-                    beerTooltip.innerText = "Сипваме бирата...";
-                } else if (scrollPercent < 80) {
-                    beerTooltip.innerText = "Още малко...";
-                } else {
-                    beerTooltip.innerText = "Наздраве! 🍻";
-                }
+    // ═══════════════════════════════════
+    // 3. GALLERY FILTER & LIGHTBOX
+    // ═══════════════════════════════════
+    const btns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+
+    if (btns.length > 0 && items.length > 0) {
+        // Filter logic
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                
+                items.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.classList.remove('hidden');
+                        setTimeout(() => { item.style.opacity = '1'; }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => { item.classList.add('hidden'); }, 300);
+                    }
+                });
+            });
+        });
+    }
+
+    if (lightbox) {
+        const lbImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-lb');
+        let currentIdx = 0;
+        let visibleItems = [];
+
+        const openLightbox = (index) => {
+            visibleItems = Array.from(items).filter(i => !i.classList.contains('hidden'));
+            currentIdx = index;
+            lbImg.src = visibleItems[currentIdx].querySelector('img').src;
+            lightbox.style.display = 'flex';
+            void lightbox.offsetWidth; // trigger reflow
+            lightbox.style.opacity = '1';
+            document.body.style.overflow = 'hidden';
+        };
+
+        items.forEach((item) => {
+            item.addEventListener('click', () => {
+                const visibleArray = Array.from(items).filter(i => !i.classList.contains('hidden'));
+                const newIdx = visibleArray.indexOf(item);
+                openLightbox(newIdx);
+            });
+        });
+
+        // Zoom toggle
+        lbImg.addEventListener('click', (e) => {
+            e.stopPropagation();
+            lbImg.classList.toggle('zoomed');
+        });
+
+        // Navigation
+        const nextImg = () => {
+            if (visibleItems.length === 0) return;
+            currentIdx = (currentIdx + 1) % visibleItems.length;
+            lbImg.src = visibleItems[currentIdx].querySelector('img').src;
+            lbImg.classList.remove('zoomed');
+        };
+
+        const prevImg = () => {
+            if (visibleItems.length === 0) return;
+            currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
+            lbImg.src = visibleItems[currentIdx].querySelector('img').src;
+            lbImg.classList.remove('zoomed');
+        };
+
+        const nextBtn = document.getElementById('next');
+        const prevBtn = document.getElementById('prev');
+        if(nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImg(); });
+        if(prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImg(); });
+
+        // Close
+        const closeLB = () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            lbImg.classList.remove('zoomed');
+        };
+
+        if(closeBtn) closeBtn.addEventListener('click', closeLB);
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox) closeLB();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'ArrowRight') nextImg();
+                if (e.key === 'ArrowLeft') prevImg();
+                if (e.key === 'Escape') closeLB();
             }
         });
     }
-});
 
-// Close mobile menu when clicking outside (UX Upgrade)
-document.addEventListener('click', (e) => {
-    const menu = document.getElementById('mobile-menu');
-    const nav = document.getElementById('navbar');
-    
-    // If click is outside nav and menu is NOT hidden
-    if (!nav.contains(e.target) && !menu.classList.contains('hidden')) {
-        menu.classList.add('hidden');
+    // ═══════════════════════════════════
+    // 4. GDPR COOKIE CONSENT BANNER
+    // ═══════════════════════════════════
+    const cookieName = 'ekaterina_cookie_consent';
+    const hasConsented = localStorage.getItem(cookieName);
+
+    if (!hasConsented) {
+        const banner = document.createElement('div');
+        banner.id = 'cookie-banner';
+        banner.className = 'fixed bottom-0 left-0 w-full z-[100] transform transition-transform duration-500 translate-y-full';
+        
+        banner.innerHTML = `
+            <div class="bg-ocean-900/95 backdrop-blur-xl border-t border-surf-accent/30 p-4 md:p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="text-gray-300 text-sm font-medium leading-relaxed md:pr-8 text-center md:text-left">
+                        <strong class="text-white font-outfit text-base tracking-wide uppercase">Използваме Бисквитки 🍪</strong><br>
+                        Този сайт използва бисквитки (cookies), за да анализира трафика (Google Analytics) и да подобри вашето преживяване. С натискането на "Приемам", вие се съгласявате с нашата <a href="privacy.html" class="text-surf-accent hover:underline font-bold">Политика за поверителност</a>.
+                    </div>
+                    <div class="flex gap-3 shrink-0 w-full md:w-auto">
+                        <button id="cookie-accept" class="flex-1 md:flex-none bg-surf-accent text-ocean-900 px-6 py-3 rounded-xl font-black font-outfit uppercase tracking-wide text-sm hover:bg-amber-400 transition-colors">
+                            Приемам
+                        </button>
+                        <button id="cookie-decline" class="flex-1 md:flex-none bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-bold font-outfit uppercase tracking-wide text-sm hover:bg-white/20 transition-colors">
+                            Отказвам
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(banner);
+
+        setTimeout(() => { banner.classList.remove('translate-y-full'); }, 1000);
+
+        document.getElementById('cookie-accept').addEventListener('click', () => {
+            localStorage.setItem(cookieName, 'accepted');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => banner.remove(), 500);
+        });
+
+        document.getElementById('cookie-decline').addEventListener('click', () => {
+            localStorage.setItem(cookieName, 'declined');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => banner.remove(), 500);
+        });
     }
 });
