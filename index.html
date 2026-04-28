@@ -6,14 +6,33 @@
     <title>Бирария Екатерина | Скара, Море и Уют в Сарафово</title>
     <meta name="description" content="Къде по-добре да си пиеш кафето, от място с гледка към морето?! Бирария Екатерина предлага най-добрата скара, прясна риба и премиум уют в Сарафово. 088 480 2552">
     
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="icon" type="image/avif" href="img/favicon.avif">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MBBNXPG9ML"></script>
+    <!-- GA4 — loads ONLY after cookie consent -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MBBNXPG9ML');
+      // Set default denied state before any other gtag call
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        wait_for_update: 500
+      });
+
+      function loadGA4() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-MBBNXPG9ML';
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-MBBNXPG9ML');
+      }
+
+      // If already consented in a previous visit, fire immediately
+      if (localStorage.getItem('ek_cookie_consent') === 'accepted') {
+        gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted' });
+        loadGA4();
+      }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,11 +50,12 @@
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300 top-0" id="navbar">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
             <a href="index.html" class="font-outfit font-black text-xl tracking-tight text-white uppercase hover:scale-105 transition-transform flex items-center gap-2">
-                <img src="img/favicon.png" alt="Бирария Екатерина" class="h-10 w-10 object-contain rounded-full">
+                <img src="img/favicon.avif" alt="Бирария Екатерина" class="h-10 w-10 object-contain rounded-full">
                 ЕКАТЕРИНА
             </a>
             <div class="hidden md:flex gap-6 font-bold text-sm text-gray-400 items-center font-outfit uppercase tracking-wide">
                 <a href="index.html" class="text-white transition">НАЧАЛО</a>
+                <a href="https://clickmenu.eu/ecaterina/establishment" target="_blank" rel="noopener" class="bg-surf-accent/10 text-surf-accent border border-surf-accent/30 px-4 py-2 rounded-xl hover:bg-surf-accent hover:text-ocean-900 transition flex items-center gap-2"><i class="fas fa-utensils"></i> МЕНЮ</a>
                 <a href="gallery.html" class="hover:text-white transition">ГАЛЕРИЯ</a>
                 <a href="events.html" class="hover:text-white transition">СЪБИТИЯ</a>
                 <a href="about.html" class="hover:text-white transition">ЗА НАС</a>
@@ -52,6 +72,7 @@
         
         <div id="mobile-menu" class="hidden md:hidden bg-ocean-900 border-b border-white/10 absolute w-full left-0 top-20 shadow-2xl flex flex-col p-4 space-y-4">
             <a href="index.html" class="text-lg font-bold text-white block p-2">🏠 Начало</a>
+            <a href="https://clickmenu.eu/ecaterina/establishment" target="_blank" rel="noopener" class="text-lg font-black font-outfit text-ocean-900 block p-4 bg-surf-accent rounded-xl text-center shadow-[0_0_15px_rgba(245,166,35,0.4)]">🍽️ ОТВОРИ МЕНЮТО</a>
             <a href="gallery.html" class="text-lg font-bold text-white block p-2">📸 Галерия</a>
             <a href="events.html" class="text-lg font-bold text-white block p-2">🎉 Събития</a>
             <a href="about.html" class="text-lg font-bold text-white block p-2">⚓ За нас</a>
@@ -59,6 +80,58 @@
         </div>
     </nav>
 
+    <!-- ═══════════════════════════════════
+         HERO SECTION — new for 2026
+    ═══════════════════════════════════ -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Hero image -->
+        <div class="absolute inset-0 z-0">
+            <img
+                src="img/biraria-ekaterina-hero-burgas.avif"
+                alt="Бирария Екатерина Сарафово — морска гледка"
+                class="w-full h-full object-cover"
+                fetchpriority="high"
+            >
+            <!-- gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-ocean-900/70 via-ocean-900/40 to-ocean-900"></div>
+        </div>
+
+        <!-- Ambient glow -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-surf-accent/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <span class="inline-block text-surf-accent font-bold uppercase tracking-[0.3em] text-sm mb-6 font-outfit">
+                Сарафово, Бургас — на брега на морето
+            </span>
+            <h1 class="font-outfit text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase leading-none mb-6 drop-shadow-2xl tracking-wide">
+                Скара.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-surf-accent to-surf-pop">Море. Бира.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-medium mb-10">
+                Къде по-добре да си пиеш кафето, от място с гледка към морето?! Заповядайте за храната, останете за атмосферата.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://clickmenu.eu/ecaterina/establishment" target="_blank" rel="noopener"
+                   class="bg-surf-accent text-ocean-900 px-8 py-4 rounded-xl font-black font-outfit uppercase tracking-wide text-lg hover:-translate-y-1 transition-transform shadow-[0_0_20px_rgba(245,166,35,0.4)] flex items-center justify-center gap-2">
+                    <i class="fas fa-utensils"></i> ВИЖ МЕНЮТО
+                </a>
+                <a href="tel:0884802552"
+                   class="glass-card text-white px-8 py-4 rounded-xl font-black font-outfit uppercase tracking-wide text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
+                    <i class="fas fa-phone text-surf-accent"></i> 088 480 2552
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-60">
+            <span class="text-xs uppercase tracking-widest font-bold text-gray-400 font-outfit">Надолу</span>
+            <div class="w-px h-12 bg-gradient-to-b from-surf-accent to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         GOOGLE RATING BAR
+    ═══════════════════════════════════ -->
     <section class="py-8 bg-ocean-800 border-b border-white/5 z-10 relative">
         <div class="max-w-7xl mx-auto px-4 flex justify-center">
             <a href="#location" class="flex items-center gap-4 bg-ocean-900 p-4 pr-8 rounded-2xl border border-white/10 shadow-lg hover:shadow-xl hover:border-surf-accent/30 transition group cursor-pointer">
@@ -73,6 +146,9 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════
+         GALLERY GRID — with real photos
+    ═══════════════════════════════════ -->
     <section id="gallery" class="py-24 bg-ocean-900">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
@@ -82,39 +158,75 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+
+                <!-- Cell 1: Large hero interior — col-span-2 row-span-2 -->
                 <div class="col-span-2 row-span-2 relative rounded-2xl overflow-hidden group shadow-2xl border border-white/10">
-                    <div class="w-full h-full bg-gradient-to-br from-ocean-800 to-ocean-card flex items-center justify-center"><i class="fas fa-fire text-4xl text-surf-accent/40"></i></div>
+                    <img src="img/interior-biraria-ekaterina-burgas-1.avif"
+                         alt="Интериор Бирария Екатерина"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-ocean-900/90 via-ocean-900/20 to-transparent opacity-80 group-hover:opacity-100 transition duration-300 flex items-end p-6">
-                        <h3 class="text-white font-black font-outfit text-2xl uppercase tracking-wide">Сочна Скара</h3>
+                        <h3 class="text-white font-black font-outfit text-2xl uppercase tracking-wide">Нашият Интериор</h3>
                     </div>
                 </div>
+
+                <!-- Cell 2: Second interior -->
                 <div class="relative rounded-2xl overflow-hidden group shadow-lg border border-white/10">
-                    <div class="w-full h-full bg-gradient-to-br from-ocean-800 to-ocean-card flex items-center justify-center"><i class="fas fa-fish text-3xl text-surf-accent/40"></i></div>
-                    <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="text-surf-accent font-black font-outfit tracking-widest uppercase">Прясна Риба</span>
+                    <img src="img/interior-biraria-ekaterina-burgas-2.avif"
+                         alt="Интериор 2 Бирария Екатерина"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-ocean-900/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <span class="text-surf-accent font-black font-outfit tracking-widest uppercase">Уют</span>
                     </div>
                 </div>
+
+                <!-- Cell 3: Outdoor tables -->
                 <div class="relative rounded-2xl overflow-hidden group shadow-lg border border-white/10">
-                    <div class="w-full h-full bg-gradient-to-br from-ocean-800 to-ocean-card flex items-center justify-center"><i class="fas fa-leaf text-3xl text-surf-accent/40"></i></div>
+                    <img src="img/masi-biraria-ekaterina-burgas.avif"
+                         alt="Маси Бирария Екатерина"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-ocean-900/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <span class="text-surf-accent font-black font-outfit tracking-widest uppercase">Тераса</span>
+                    </div>
                 </div>
-                <div class="col-span-2 md:col-span-1 row-span-2 relative rounded-2xl overflow-hidden group shadow-lg border border-white/10">
-                    <div class="w-full h-full bg-gradient-to-br from-ocean-800 to-ocean-card flex items-center justify-center"><i class="fas fa-beer text-4xl text-surf-accent/40"></i></div>
+
+                <!-- Cell 4: Beer — tall placeholder (keep for now, replace with beer/food photo when available) -->
+                <div class="col-span-2 md:col-span-1 row-span-2 relative rounded-2xl overflow-hidden group shadow-lg border border-white/10 bg-gradient-to-br from-ocean-800 to-ocean-card">
+                    <div class="w-full h-full flex flex-col items-center justify-center gap-3">
+                        <i class="fas fa-beer text-5xl text-surf-accent/50"></i>
+                        <span class="text-surf-accent/60 font-outfit font-black uppercase tracking-widest text-sm">Foto<br>Coming Soon</span>
+                    </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-surf-pop/90 to-transparent opacity-80 group-hover:opacity-100 transition duration-300 flex items-end p-6">
                         <h3 class="text-white font-black font-outfit text-xl uppercase tracking-wide">Ледено Наливно</h3>
                     </div>
                 </div>
-                <div class="relative rounded-2xl overflow-hidden group shadow-lg border border-white/10">
-                    <div class="w-full h-full bg-gradient-to-br from-ocean-800 to-ocean-card flex items-center justify-center"><i class="fas fa-water text-3xl text-surf-accent/40"></i></div>
+
+                <!-- Cell 5: Sea view placeholder -->
+                <div class="relative rounded-2xl overflow-hidden group shadow-lg border border-white/10 bg-gradient-to-br from-ocean-800 to-ocean-card">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <i class="fas fa-water text-4xl text-surf-accent/30"></i>
+                    </div>
                     <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                         <span class="text-surf-accent font-black font-outfit tracking-widest uppercase">Гледка Море</span>
                     </div>
                 </div>
-                <div class="relative rounded-2xl overflow-hidden group shadow-lg border border-white/10">
-                    <div class="w-full h-full bg-gradient-to-br from-ocean-800 to-ocean-card flex items-center justify-center"><i class="fas fa-ice-cream text-3xl text-surf-accent/40"></i></div>
+
+                <!-- Cell 6: Menu placeholder -->
+                <div class="relative rounded-2xl overflow-hidden group shadow-lg border border-white/10 bg-gradient-to-br from-ocean-800 to-ocean-card">
+                    <img src="img/Menu2.avif"
+                         alt="Меню Бирария Екатерина"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                         onerror="this.style.display='none'">
+                    <div class="absolute inset-0 bg-ocean-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <span class="text-surf-accent font-black font-outfit tracking-widest uppercase">Меню</span>
+                    </div>
                 </div>
+
             </div>
             
             <div class="text-center mt-12">
+                <a href="gallery.html" class="inline-flex items-center gap-2 text-gray-400 font-bold font-outfit hover:text-surf-accent transition uppercase tracking-[0.2em] text-sm mr-6">
+                    <i class="fas fa-images text-xl"></i> Вижте пълната галерия
+                </a>
                 <a href="https://www.instagram.com/birariqekaterina/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-gray-400 font-bold font-outfit hover:text-surf-accent transition uppercase tracking-[0.2em] text-sm">
                     <i class="fab fa-instagram text-xl"></i> Вижте още в Instagram
                 </a>
@@ -122,6 +234,9 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════
+         AMENITIES
+    ═══════════════════════════════════ -->
     <section id="amenities" class="py-20 bg-ocean-800 border-y border-white/5">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
@@ -132,13 +247,17 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div class="glass-card p-6 rounded-2xl text-center hover:-translate-y-1 transition-transform">
                     <div class="w-14 h-14 bg-ocean-900 rounded-xl border border-white/10 flex items-center justify-center text-2xl mb-4 mx-auto text-surf-accent shadow-inner"><i class="fas fa-parking"></i></div>
-                    <h3 class="font-bold font-outfit text-white mb-2 text-lg"> Може да паркирате близост до заведението</h3>
+                    <h3 class="font-bold font-outfit text-white mb-2 text-lg">Може да паркирате близост до заведението</h3>
                     <p class="text-xs text-gray-400 font-medium">Лесен достъп с автомобил.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl text-center hover:-translate-y-1 transition-transform">
-                    <div class="w-14 h-14 bg-ocean-900 rounded-xl border border-white/10 flex items-center justify-center text-2xl mb-4 mx-auto text-surf-accent shadow-inner"><i class="fas fa-tree"></i></div>
-                    <h3 class="font-bold font-outfit text-white mb-2 text-lg">Лятна Градина</h3>
-                    <p class="text-xs text-gray-400 font-medium">Вечеря на открито с гледка. <br>Огранчени маси</p>
+                <div class="glass-card p-6 rounded-2xl text-center hover:-translate-y-1 transition-transform overflow-hidden relative">
+                    <!-- subtle bg image hint -->
+                    <img src="img/masi-biraria-ekaterina-burgas.avif" alt="" class="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none">
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-ocean-900 rounded-xl border border-white/10 flex items-center justify-center text-2xl mb-4 mx-auto text-surf-accent shadow-inner"><i class="fas fa-tree"></i></div>
+                        <h3 class="font-bold font-outfit text-white mb-2 text-lg">Лятна Градина</h3>
+                        <p class="text-xs text-gray-400 font-medium">Вечеря на открито с гледка. <br>Ограничени маси</p>
+                    </div>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center hover:-translate-y-1 transition-transform">
                     <div class="w-14 h-14 bg-ocean-900 rounded-xl border border-white/10 flex items-center justify-center text-2xl mb-4 mx-auto text-surf-accent shadow-inner"><i class="fas fa-credit-card"></i></div>
@@ -154,6 +273,9 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════
+         LOCATION / CTA
+    ═══════════════════════════════════ -->
     <section id="location" class="bg-ocean-900 text-white pt-24 pb-12">
         <div class="max-w-7xl mx-auto px-4 text-center mb-16 relative z-10">
             <h2 class="text-4xl font-black font-outfit mb-4 uppercase tracking-wide">Резервации & Локация</h2>
@@ -165,12 +287,15 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════ -->
     <footer class="bg-ocean-800 text-gray-400 pt-16 pb-8 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                 <div>
                     <div class="font-outfit font-black text-2xl tracking-tighter text-white uppercase mb-4 flex items-center gap-3">
-                        <img src="img/favicon.png" alt="Бирария Екатерина" class="h-10 w-10 object-contain rounded-full"> ЕКАТЕРИНА
+                        <img src="img/favicon.avif" alt="Бирария Екатерина" class="h-10 w-10 object-contain rounded-full"> ЕКАТЕРИНА
                     </div>
                     <p class="text-sm font-medium leading-relaxed mb-6">
                         Къде по-добре да си пиеш кафето, от място с гледка към морето?! Заповядайте за храната, останете за атмосферата.
@@ -202,6 +327,7 @@
                     <h3 class="text-white font-black font-outfit uppercase tracking-wide mb-6">Бързи Връзки</h3>
                     <ul class="space-y-3 text-sm font-medium uppercase tracking-wide">
                         <li><a href="index.html" class="hover:text-surf-accent transition">🏠 Начало</a></li>
+                        <li><a href="https://clickmenu.eu/ecaterina/establishment" target="_blank" rel="noopener" class="hover:text-surf-accent transition">🍽️ Дигитално Меню</a></li>
                         <li><a href="gallery.html" class="hover:text-surf-accent transition">📸 Галерия</a></li>
                         <li><a href="events.html" class="hover:text-surf-accent transition">🎉 Събития</a></li>
                         <li><a href="about.html" class="hover:text-surf-accent transition">⚓ За нас</a></li>
@@ -229,5 +355,73 @@
     </footer>
 
     <script src="js/script.js" defer></script>
+
+    <!-- ═══════════════════════════════════
+         COOKIE CONSENT BANNER (GDPR)
+    ═══════════════════════════════════ -->
+    <div id="cookie-banner"
+         class="fixed bottom-0 left-0 right-0 z-[9999] p-4 md:p-6"
+         style="display:none;">
+        <div class="max-w-5xl mx-auto">
+            <div class="rounded-2xl border border-white/10 shadow-2xl p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6"
+                 style="background:rgba(10,26,36,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-top:1px solid rgba(245,166,35,0.2);">
+
+                <div class="flex items-start gap-4 flex-1">
+                    <div class="w-10 h-10 shrink-0 rounded-xl flex items-center justify-center text-lg mt-0.5"
+                         style="background:rgba(245,166,35,0.1); border:1px solid rgba(245,166,35,0.2); color:#F5A623;">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <div>
+                        <p class="text-white font-bold text-sm font-outfit uppercase tracking-wide mb-1">Използваме бисквитки</p>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            Използваме Google Analytics за анализ на трафика. Без вашето съгласие не стартираме никакви проследяващи скриптове.
+                            <a href="privacy.html" class="hover:underline ml-1" style="color:#F5A623;">Научете повече →</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 shrink-0 w-full md:w-auto">
+                    <button id="cookie-decline"
+                            class="flex-1 md:flex-none px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wide font-outfit transition"
+                            style="border:1px solid rgba(255,255,255,0.15); color:#9ca3af;">
+                        Откажи
+                    </button>
+                    <button id="cookie-accept"
+                            class="flex-1 md:flex-none px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-wide font-outfit transition"
+                            style="background:#F5A623; color:#0a1a24; box-shadow:0 0 15px rgba(245,166,35,0.3);">
+                        Приемам
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+      (function() {
+        var banner = document.getElementById('cookie-banner');
+        var btnOk  = document.getElementById('cookie-accept');
+        var btnNo  = document.getElementById('cookie-decline');
+        var KEY    = 'ek_cookie_consent';
+
+        if (!localStorage.getItem(KEY)) {
+          banner.style.display = 'block';
+        }
+
+        btnOk.addEventListener('click', function() {
+          localStorage.setItem(KEY, 'accepted');
+          banner.style.display = 'none';
+          if (typeof gtag === 'function') {
+            gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted' });
+          }
+          if (typeof loadGA4 === 'function') { loadGA4(); }
+        });
+
+        btnNo.addEventListener('click', function() {
+          localStorage.setItem(KEY, 'declined');
+          banner.style.display = 'none';
+        });
+      })();
+    </script>
 </body>
 </html>

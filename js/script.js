@@ -1,88 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // ═══════════════════════════════════
-    // 1. MOBILE MENU LOGIC
+    // 1. MOBILE NAV
     // ═══════════════════════════════════
-    const menuBtn = document.getElementById('mobile-menu-btn');
+    const menuBtn    = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
     if (menuBtn && mobileMenu) {
-        const toggleMenu = () => {
-            const isHidden = mobileMenu.classList.contains('hidden');
-            const icon = menuBtn.querySelector('i');
-            if (isHidden) {
-                mobileMenu.classList.remove('hidden');
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                mobileMenu.classList.add('hidden');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+        const icon = menuBtn.querySelector('i');
+
+        const closeMenu = () => {
+            mobileMenu.classList.add('hidden');
+            icon.classList.replace('fa-times', 'fa-bars');
         };
 
-        menuBtn.addEventListener('click', toggleMenu);
+        menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                closeMenu();
+            }
+        });
 
-        // Close when clicking a link
         mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuBtn.querySelector('i').classList.remove('fa-times');
-                menuBtn.querySelector('i').classList.add('fa-bars');
-            });
+            link.addEventListener('click', closeMenu);
         });
 
-        // Close when clicking outside
         document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                menuBtn.querySelector('i').classList.remove('fa-times');
-                menuBtn.querySelector('i').classList.add('fa-bars');
+            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                closeMenu();
             }
         });
     }
 
     // ═══════════════════════════════════
-    // 2. BEER SCROLL TRACKER (Index Page)
+    // 2. GALLERY — filter + lightbox
+    //    (no-ops silently on other pages)
     // ═══════════════════════════════════
-    const beerLiquid = document.getElementById('beer-liquid');
-    const beerFoam = document.getElementById('beer-foam');
+    const filterBtns   = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox     = document.getElementById('lightbox');
 
-    if (beerLiquid && beerFoam) {
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            let scrollPercent = 0;
-            if (docHeight > 0) {
-                scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-            }
-            beerLiquid.style.height = `${scrollPercent}%`;
-            beerFoam.style.bottom = `${scrollPercent}%`;
-        });
-    }
-
-    // ═══════════════════════════════════
-    // 3. GALLERY FILTER & LIGHTBOX
-    // ═══════════════════════════════════
-    const btns = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.gallery-item');
-    const lightbox = document.getElementById('lightbox');
-
-    if (btns.length > 0 && items.length > 0) {
-        // Filter logic
-        btns.forEach(btn => {
+    if (filterBtns.length && galleryItems.length) {
+        filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                btns.forEach(b => b.classList.remove('active'));
+                filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filter = btn.dataset.filter;
-                
-                items.forEach(item => {
-                    if (filter === 'all' || item.dataset.category === filter) {
+
+                galleryItems.forEach(item => {
+                    const match = filter === 'all' || item.dataset.category === filter;
+                    if (match) {
                         item.classList.remove('hidden');
-                        setTimeout(() => { item.style.opacity = '1'; }, 50);
+                        requestAnimationFrame(() => { item.style.opacity = '1'; });
                     } else {
                         item.style.opacity = '0';
-                        setTimeout(() => { item.classList.add('hidden'); }, 300);
+                        setTimeout(() => item.classList.add('hidden'), 300);
                     }
                 });
             });
@@ -90,120 +65,135 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (lightbox) {
-        const lbImg = document.getElementById('lightbox-img');
+        const lbImg    = document.getElementById('lightbox-img');
         const closeBtn = document.getElementById('close-lb');
-        let currentIdx = 0;
+        const nextBtn  = document.getElementById('next');
+        const prevBtn  = document.getElementById('prev');
+        let currentIdx   = 0;
         let visibleItems = [];
 
-        const openLightbox = (index) => {
-            visibleItems = Array.from(items).filter(i => !i.classList.contains('hidden'));
-            currentIdx = index;
+        // Only items that have a real <img> inside are lightbox-able
+        const getVisible = () =>
+            Array.from(galleryItems).filter(
+                i => !i.classList.contains('hidden') && i.querySelector('img')
+            );
+
+        const openLightbox = (idx) => {
+            visibleItems = getVisible();
+            if (!visibleItems.length) return;
+            currentIdx = idx;
             lbImg.src = visibleItems[currentIdx].querySelector('img').src;
             lightbox.style.display = 'flex';
-            void lightbox.offsetWidth; // trigger reflow
+            void lightbox.offsetWidth;          // force reflow → triggers CSS transition
             lightbox.style.opacity = '1';
             document.body.style.overflow = 'hidden';
         };
 
-        items.forEach((item) => {
+        const closeLB = () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+            lbImg.classList.remove('zoomed');
+        };
+
+        const navigate = (dir) => {
+            if (!visibleItems.length) return;
+            currentIdx = (currentIdx + dir + visibleItems.length) % visibleItems.length;
+            lbImg.src = visibleItems[currentIdx].querySelector('img').src;
+            lbImg.classList.remove('zoomed');
+        };
+
+        galleryItems.forEach(item => {
+            if (!item.querySelector('img')) return;
             item.addEventListener('click', () => {
-                const visibleArray = Array.from(items).filter(i => !i.classList.contains('hidden'));
-                const newIdx = visibleArray.indexOf(item);
-                openLightbox(newIdx);
+                const visible = getVisible();
+                openLightbox(visible.indexOf(item));
             });
         });
 
-        // Zoom toggle
-        lbImg.addEventListener('click', (e) => {
-            e.stopPropagation();
-            lbImg.classList.toggle('zoomed');
-        });
-
-        // Navigation
-        const nextImg = () => {
-            if (visibleItems.length === 0) return;
-            currentIdx = (currentIdx + 1) % visibleItems.length;
-            lbImg.src = visibleItems[currentIdx].querySelector('img').src;
-            lbImg.classList.remove('zoomed');
-        };
-
-        const prevImg = () => {
-            if (visibleItems.length === 0) return;
-            currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
-            lbImg.src = visibleItems[currentIdx].querySelector('img').src;
-            lbImg.classList.remove('zoomed');
-        };
-
-        const nextBtn = document.getElementById('next');
-        const prevBtn = document.getElementById('prev');
-        if(nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImg(); });
-        if(prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImg(); });
-
-        // Close
-        const closeLB = () => {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            lbImg.classList.remove('zoomed');
-        };
-
-        if(closeBtn) closeBtn.addEventListener('click', closeLB);
-        lightbox.addEventListener('click', (e) => {
-            if(e.target === lightbox) closeLB();
-        });
+        lbImg.addEventListener('click',  (e) => { e.stopPropagation(); lbImg.classList.toggle('zoomed'); });
+        if (nextBtn)  nextBtn.addEventListener('click',  (e) => { e.stopPropagation(); navigate(+1); });
+        if (prevBtn)  prevBtn.addEventListener('click',  (e) => { e.stopPropagation(); navigate(-1); });
+        if (closeBtn) closeBtn.addEventListener('click', closeLB);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLB(); });
 
         document.addEventListener('keydown', (e) => {
-            if (lightbox.style.display === 'flex') {
-                if (e.key === 'ArrowRight') nextImg();
-                if (e.key === 'ArrowLeft') prevImg();
-                if (e.key === 'Escape') closeLB();
-            }
+            if (lightbox.style.display !== 'flex') return;
+            if (e.key === 'ArrowRight') navigate(+1);
+            if (e.key === 'ArrowLeft')  navigate(-1);
+            if (e.key === 'Escape')     closeLB();
         });
     }
 
     // ═══════════════════════════════════
-    // 4. GDPR COOKIE CONSENT BANNER
+    // 3. GDPR COOKIE CONSENT
+    //
+    //    Storage key : 'ek_cookie_consent'
+    //    Values      : 'accepted' | 'declined' | null (first visit)
+    //
+    //    Returning visitors: the inline <head> script on each page reads
+    //    localStorage and calls loadGA4() before DOMContentLoaded fires,
+    //    so GA4 is already live by the time this code runs — no double-fire.
+    //
+    //    First visit: banner slides up after 1 s.
+    //    Accept  → gtag consent update + loadGA4() called here.
+    //    Decline → stored, banner gone, GA4 never fires.
     // ═══════════════════════════════════
-    const cookieName = 'ekaterina_cookie_consent';
-    const hasConsented = localStorage.getItem(cookieName);
+    const CONSENT_KEY  = 'ek_cookie_consent';
+    const hasConsented = localStorage.getItem(CONSENT_KEY);
 
     if (!hasConsented) {
         const banner = document.createElement('div');
         banner.id = 'cookie-banner';
-        banner.className = 'fixed bottom-0 left-0 w-full z-[100] transform transition-transform duration-500 translate-y-full';
-        
+        banner.className = 'fixed bottom-0 left-0 w-full z-[9999] transform transition-transform duration-500 translate-y-full';
+
         banner.innerHTML = `
-            <div class="bg-ocean-900/95 backdrop-blur-xl border-t border-surf-accent/30 p-4 md:p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+            <div style="background:rgba(10,26,36,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(245,166,35,0.25);box-shadow:0 -10px 40px rgba(0,0,0,0.5);"
+                 class="p-4 md:p-6">
                 <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                     <div class="text-gray-300 text-sm font-medium leading-relaxed md:pr-8 text-center md:text-left">
                         <strong class="text-white font-outfit text-base tracking-wide uppercase">Използваме Бисквитки 🍪</strong><br>
-                        Този сайт използва бисквитки (cookies), за да анализира трафика (Google Analytics) и да подобри вашето преживяване. С натискането на "Приемам", вие се съгласявате с нашата <a href="privacy.html" class="text-surf-accent hover:underline font-bold">Политика за поверителност</a>.
+                        Използваме Google Analytics, за да разберем как гостите ни намират. Без вашето съгласие не стартираме никакво проследяване.
+                        <a href="privacy.html" class="text-surf-accent hover:underline font-bold ml-1">Политика за поверителност →</a>
                     </div>
                     <div class="flex gap-3 shrink-0 w-full md:w-auto">
-                        <button id="cookie-accept" class="flex-1 md:flex-none bg-surf-accent text-ocean-900 px-6 py-3 rounded-xl font-black font-outfit uppercase tracking-wide text-sm hover:bg-amber-400 transition-colors">
-                            Приемам
-                        </button>
-                        <button id="cookie-decline" class="flex-1 md:flex-none bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-bold font-outfit uppercase tracking-wide text-sm hover:bg-white/20 transition-colors">
+                        <button id="cookie-decline"
+                                class="flex-1 md:flex-none border border-white/20 text-gray-400 px-6 py-3 rounded-xl font-bold font-outfit uppercase tracking-wide text-sm hover:bg-white/10 transition-colors">
                             Отказвам
+                        </button>
+                        <button id="cookie-accept"
+                                class="flex-1 md:flex-none bg-surf-accent text-ocean-900 px-6 py-3 rounded-xl font-black font-outfit uppercase tracking-wide text-sm hover:bg-amber-400 transition-colors"
+                                style="box-shadow:0 0 15px rgba(245,166,35,0.3);">
+                            Приемам
                         </button>
                     </div>
                 </div>
-            </div>
-        `;
+            </div>`;
 
         document.body.appendChild(banner);
+        setTimeout(() => banner.classList.remove('translate-y-full'), 1000);
 
-        setTimeout(() => { banner.classList.remove('translate-y-full'); }, 1000);
-
-        document.getElementById('cookie-accept').addEventListener('click', () => {
-            localStorage.setItem(cookieName, 'accepted');
+        const dismiss = (choice) => {
+            localStorage.setItem(CONSENT_KEY, choice);
             banner.classList.add('translate-y-full');
             setTimeout(() => banner.remove(), 500);
+        };
+
+        document.getElementById('cookie-accept').addEventListener('click', () => {
+            dismiss('accepted');
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    analytics_storage:  'granted',
+                    ad_storage:         'granted',
+                    ad_user_data:       'granted',
+                    ad_personalization: 'granted',
+                });
+            }
+            if (typeof loadGA4 === 'function') loadGA4();
         });
 
         document.getElementById('cookie-decline').addEventListener('click', () => {
-            localStorage.setItem(cookieName, 'declined');
-            banner.classList.add('translate-y-full');
-            setTimeout(() => banner.remove(), 500);
+            dismiss('declined');
         });
     }
+
 });

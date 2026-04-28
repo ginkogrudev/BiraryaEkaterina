@@ -5,52 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Политика за поверителност | Бирария Екатерина</title>
     <meta name="description" content="Политика за защита на личните данни и бисквитки на Бирария Екатерина, Сарафово.">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="icon" type="image/avif" href="img/favicon.avif">
+
+    <!-- GA4 — consent-gated -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        wait_for_update: 500
+      });
+      function loadGA4() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-MBBNXPG9ML';
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-MBBNXPG9ML');
+      }
+      if (localStorage.getItem('ek_cookie_consent') === 'accepted') {
+        gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted' });
+        loadGA4();
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind-config.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MBBNXPG9ML"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MBBNXPG9ML');
-    </script>
 </head>
 <body class="bg-ocean-900 text-gray-300 font-sans antialiased flex flex-col min-h-screen selection:bg-surf-accent selection:text-ocean-900">
 
-   <nav class="fixed w-full z-50 glass-nav transition-all duration-300 top-0" id="navbar">
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 top-0" id="navbar">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
             <a href="index.html" class="font-outfit font-black text-2xl tracking-tight text-white uppercase hover:scale-105 transition-transform flex items-center gap-3">
-                <img src="img/favicon.png" alt="Лого Бирария Екатерина" class="w-10 h-10 object-contain"> ЕКАТЕРИНА
+                <img src="img/favicon.avif" alt="Лого Бирария Екатерина" class="w-10 h-10 object-contain"> ЕКАТЕРИНА
             </a>
-
             <div class="hidden md:flex gap-8 font-bold text-sm text-gray-400 items-center font-outfit uppercase tracking-wide">
                 <a href="index.html" class="hover:text-white transition">НАЧАЛО</a>
+                <a href="https://clickmenu.eu/ecaterina/establishment" target="_blank" rel="noopener"
+                   class="bg-surf-accent/10 text-surf-accent border border-surf-accent/30 px-4 py-2 rounded-xl hover:bg-surf-accent hover:text-ocean-900 transition flex items-center gap-2">
+                    <i class="fas fa-utensils"></i> МЕНЮ
+                </a>
                 <a href="gallery.html" class="hover:text-white transition">ГАЛЕРИЯ</a>
                 <a href="events.html" class="hover:text-white transition">СЪБИТИЯ</a>
                 <a href="about.html" class="hover:text-white transition">ЗА НАС</a>
             </div>
-
             <div class="hidden md:flex items-center gap-4">
                 <a href="tel:0884802552" class="bg-surf-accent text-ocean-900 px-6 py-2.5 rounded-xl font-black font-outfit uppercase tracking-wide text-sm hover:-translate-y-1 transition-transform shadow-[0_0_15px_rgba(245,166,35,0.3)] flex items-center">
                     <i class="fas fa-phone mr-2"></i> 088 480 2552
                 </a>
             </div>
-
             <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2 text-2xl touch-manipulation" aria-label="Open Menu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-
         <div id="mobile-menu" class="hidden md:hidden bg-ocean-900 border-b border-white/10 absolute w-full left-0 top-20 shadow-2xl flex flex-col p-4 space-y-4">
             <a href="index.html" class="text-lg font-bold text-white block p-3">🏠 Начало</a>
+            <a href="https://clickmenu.eu/ecaterina/establishment" target="_blank" rel="noopener"
+               class="text-lg font-black font-outfit text-ocean-900 block p-4 bg-surf-accent rounded-xl text-center shadow-[0_0_15px_rgba(245,166,35,0.4)]">🍽️ ОТВОРИ МЕНЮТО</a>
             <a href="gallery.html" class="text-lg font-bold text-white block p-3">📸 Галерия</a>
             <a href="events.html" class="text-lg font-bold text-white block p-3">🎉 Събития</a>
             <a href="about.html" class="text-lg font-bold text-white block p-3">⚓ За нас</a>
@@ -58,6 +77,7 @@
         </div>
     </nav>
 
+    <!-- ═══ HEADER ════════════════════════════════════════════════════════ -->
     <header class="pt-32 pb-12 bg-ocean-900 border-b border-white/5 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-96 h-96 bg-surf-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
@@ -66,57 +86,60 @@
         </div>
     </header>
 
+    <!-- ═══ CONTENT ═══════════════════════════════════════════════════════ -->
     <main class="flex-grow py-16 bg-ocean-900">
         <div class="max-w-4xl mx-auto px-4">
             <div class="glass-card p-8 md:p-12 rounded-3xl shadow-xl legal-content">
-                
-                <p>Настоящата Политика за поверителност описва как <strong>Бирария Екатерина</strong> (наричана по-долу „ние“, „нас“ или „Ресторантът“) събира, използва и защитава Вашите лични данни при използването на уебсайта <strong>birariaekaterina.bg</strong> („Уебсайтът“), в съответствие с Общия регламент относно защитата на данните (GDPR) на ЕС.</p>
+
+                <p>Настоящата Политика за поверителност описва как <strong>Бирария Екатерина</strong> (наричана по-долу „ние", „нас" или „Ресторантът") събира, използва и защитава Вашите лични данни при използването на уебсайта <strong>birariaekaterina.bg</strong> („Уебсайтът"), в съответствие с Общия регламент относно защитата на данните (GDPR) на ЕС.</p>
 
                 <h2>1. Какви лични данни събираме и как</h2>
                 <p>В зависимост от начина, по който взаимодействате с нашия Уебсайт, ние може да събираме следните категории данни:</p>
                 <ul>
                     <li><strong>Автоматично събирани данни:</strong> При посещение на нашия Уебсайт автоматично събираме техническа информация чрез бисквитки (cookies) и подобни технологии. Това включва Вашия IP адрес, тип браузър, операционна система, посетени страници и време прекарано на сайта.</li>
-                    <li><strong>Данни, предоставени доброволно:</strong> Ако се свържете с нас чрез предоставените телефонни номера или WhatsApp връзки, ние ще получим Вашия телефонен номер и всяка друга информация, която решите да ни споделите (напр. имена за резервация).</li>
+                    <li><strong>Данни, предоставени доброволно:</strong> Ако се свържете с нас чрез предоставените телефонни номера или Viber връзки, ние ще получим Вашия телефонен номер и всяка друга информация, която решите да ни споделите (напр. имена за резервация).</li>
                 </ul>
 
                 <h2>2. Цел и правно основание за обработване</h2>
                 <p>Ние обработваме Вашите данни на следните правни основания:</p>
                 <ul>
-                    <li><strong>Легитимен интерес:</strong> За анализ на трафика (Google Analytics 4), подобряване на нашите услуги, маркетинг (Meta Pixel) и осигуряване на сигурността на Уебсайта.</li>
+                    <li><strong>Легитимен интерес:</strong> За анализ на трафика (Google Analytics 4), подобряване на нашите услуги и осигуряване на сигурността на Уебсайта.</li>
                     <li><strong>Изпълнение на договор / Преддоговорни отношения:</strong> Когато се свързвате с нас за резервация или организиране на събитие.</li>
-                    <li><strong>Съгласие:</strong> За използването на определени маркетинг и аналитични бисквитки.</li>
+                    <li><strong>Съгласие:</strong> За използването на аналитични бисквитки — ние не стартираме никакво проследяване преди да дадете изричното си съгласие чрез банера на сайта.</li>
                 </ul>
 
-                <h2>3. Услуги на трети страни (Google и Meta)</h2>
-                <p>За да подобрим Уебсайта и нашите рекламни кампании, ние използваме следните услуги на трети страни, които могат да събират и обработват Ваши данни:</p>
+                <h2>3. Услуги на трети страни</h2>
+                <p>За да подобрим Уебсайта, ние използваме следните услуги на трети страни, които могат да събират и обработват Ваши данни:</p>
+
                 <h3>Google Analytics 4 (GA4)</h3>
-                <p>Използваме GA4 за проследяване и анализ на трафика. Google събира псевдонимизирани данни (като IP адреси и поведение на сайта). Повече информация можете да намерите в <a href="https://policies.google.com/privacy" target="_blank" class="text-surf-accent hover:underline">Политиката за поверителност на Google</a>.</p>
-                
-                <h3>Meta Pixel (Facebook/Instagram)</h3>
-                <p>Интегрирали сме Meta Pixel, който ни помага да измерваме ефективността на рекламите ни и да показваме релевантни реклами на потребители, посетили Уебсайта (напр. разгледали менюто). Meta може да свърже тези данни с Вашия Facebook/Instagram профил. Вижте <a href="https://www.facebook.com/privacy/policy/" target="_blank" class="text-surf-accent hover:underline">Политиката за данни на Meta</a>.</p>
+                <p>Използваме GA4 за проследяване и анализ на трафика, но само след Вашето изрично съгласие. Google събира псевдонимизирани данни (като IP адреси и поведение на сайта). Повече информация можете да намерите в <a href="https://policies.google.com/privacy" target="_blank" class="text-surf-accent hover:underline">Политиката за поверителност на Google</a>.</p>
 
-                <h3>WhatsApp</h3>
-                <p>При използване на бутона за WhatsApp чат, Вашата комуникация е обект на <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" class="text-surf-accent hover:underline">Условията и Политиката за поверителност на WhatsApp (Meta)</a>.</p>
+                <h3>Viber</h3>
+                <p>При използване на бутона за Viber чат, Вашата комуникация е обект на <a href="https://www.viber.com/en/terms/viber-privacy-policy/" target="_blank" class="text-surf-accent hover:underline">Политиката за поверителност на Viber (Rakuten)</a>. Ние получаваме само съобщенията, които изпращате директно до нас.</p>
 
-                <h2>4. Срок на съхранение на данните</h2>
+                <h3>Дигитално меню (ClickMenu)</h3>
+                <p>Нашето дигитално меню се обслужва от платформата ClickMenu (<a href="https://clickmenu.eu" target="_blank" class="text-surf-accent hover:underline">clickmenu.eu</a>). При посещение на менюто важат техните условия за ползване и политика за поверителност.</p>
+
+                <h2>4. Бисквитки (Cookies) и съгласие</h2>
+                <p>Уебсайтът използва бисквитки единствено за аналитични цели (GA4). При първото Ви посещение ще видите банер, с който можете да приемете или откажете използването им. Без вашето съгласие не стартираме никакви проследяващи скриптове. Можете да промените решението си по всяко време, като изчистите данните на браузъра си.</p>
+                <p>Можете също да настроите Вашия браузър да блокира бисквитките изцяло, но някои части от сайта може да не работят правилно.</p>
+
+                <h2>5. Срок на съхранение на данните</h2>
                 <ul>
                     <li>Аналитични данни (GA4) се съхраняват според настройките на платформата (стандартно до 14 месеца).</li>
-                    <li>Маркетингови данни (Meta Pixel) се съхраняват според политиките на Meta.</li>
-                    <li>Данни от телефонни и WhatsApp запитвания се съхраняват само докато са необходими за изпълнение на Вашата заявка (напр. до преминаване на резервацията).</li>
+                    <li>Данни от телефонни и Viber запитвания се съхраняват само докато са необходими за изпълнение на Вашата заявка (напр. до преминаване на резервацията).</li>
+                    <li>Предпочитанията за бисквитки се съхраняват локално в браузъра Ви (localStorage) — не се изпращат към нашите сървъри.</li>
                 </ul>
 
-                <h2>5. Вашите права според GDPR</h2>
+                <h2>6. Вашите права според GDPR</h2>
                 <p>Като субект на данни имате следните права:</p>
                 <ul>
                     <li><strong>Право на достъп:</strong> Да поискате информация какви Ваши данни обработваме.</li>
                     <li><strong>Право на корекция:</strong> Да поискате коригиране на неточни данни.</li>
-                    <li><strong>Право на изтриване („право да бъдеш забравен“):</strong> Да поискате изтриване на Вашите данни, когато вече не са необходими за целите, за които са събрани.</li>
+                    <li><strong>Право на изтриване („право да бъдеш забравен"):</strong> Да поискате изтриване на Вашите данни, когато вече не са необходими за целите, за които са събрани.</li>
                     <li><strong>Право на ограничаване и възражение:</strong> Срещу обработването на данни за целите на директния маркетинг.</li>
                     <li><strong>Право на преносимост:</strong> Да получите данните си в структуриран формат.</li>
                 </ul>
-
-                <h2>6. Бисквитки (Cookies)</h2>
-                <p>Уебсайтът използва бисквитки за правилното си функциониране, както и за горепосочените аналитични и маркетингови цели. Можете да настроите Вашия браузър да блокира или да Ви предупреждава за тези бисквитки, но някои части от сайта може да не работят правилно.</p>
 
                 <h2>7. Контакти за заявки относно лични данни</h2>
                 <p>Ако имате въпроси относно тази Политика или искате да упражните правата си, моля свържете се с нас:</p>
@@ -124,18 +147,20 @@
                     <p class="mb-2"><i class="fas fa-building text-surf-accent w-6 text-center"></i> <strong>Обект:</strong> Бирария Екатерина</p>
                     <p class="mb-2"><i class="fas fa-map-marker-alt text-surf-accent w-6 text-center"></i> <strong>Адрес:</strong> ул. "Черно море" 30, Сарафово, Бургас 8016</p>
                     <p class="mb-2"><i class="fas fa-phone text-surf-accent w-6 text-center"></i> <strong>Телефон:</strong> 088 480 2552</p>
-                    <p class="mb-0"><i class="fas fa-envelope text-surf-accent w-6 text-center"></i> <strong>Имейл:</strong> privacy@birariaekaterina.bg <em>(пример)</em></p>
+                    <p class="mb-0"><i class="fas fa-envelope text-surf-accent w-6 text-center"></i> <strong>Имейл:</strong> privacy@birariaekaterina.bg</p>
                 </div>
+
             </div>
         </div>
     </main>
 
+    <!-- ═══ FOOTER ════════════════════════════════════════════════════════ -->
     <footer class="bg-ocean-900 text-gray-400 pt-16 pb-8 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                 <div>
                     <div class="font-outfit font-black text-2xl tracking-tighter text-white uppercase mb-4 flex items-center gap-3">
-                        <img src="img/favicon.png" alt="Бирария Екатерина" class="h-10 w-10 object-contain rounded-full"> ЕКАТЕРИНА
+                        <img src="img/favicon.avif" alt="Бирария Екатерина" class="h-10 w-10 object-contain rounded-full"> ЕКАТЕРИНА
                     </div>
                     <p class="text-sm font-medium leading-relaxed mb-6">
                         Къде по-добре да си пиеш кафето, от място с гледка към морето?! Заповядайте за храната, останете за атмосферата.
@@ -143,7 +168,7 @@
                     <div class="flex gap-4">
                         <a href="https://www.facebook.com/p/%D0%91%D0%B8%D1%80%D0%B0%D1%80%D0%B8%D1%8F-%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B0-100091163343657/" target="_blank" class="text-2xl text-gray-400 hover:text-[#1877F2] transition"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.instagram.com/birariqekaterina/" target="_blank" class="text-2xl text-gray-400 hover:text-[#E4405F] transition"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/359884802552" target="_blank" class="text-2xl text-gray-400 hover:text-[#25D366] transition"><i class="fab fa-whatsapp"></i></a>
+                        <a href="viber://chat?number=%2B359884802552" class="text-2xl text-gray-400 hover:text-[#7360f2] transition" title="Viber"><i class="fab fa-viber"></i></a>
                     </div>
                 </div>
                 <div>
@@ -167,7 +192,7 @@
                     <h3 class="text-white font-black font-outfit uppercase tracking-wide mb-6">Бързи Връзки</h3>
                     <ul class="space-y-3 text-sm font-medium uppercase tracking-wide">
                         <li><a href="index.html" class="hover:text-surf-accent transition">🏠 Начало</a></li>
-                        <li><a href="menu-bg.html" class="hover:text-surf-accent transition">🍽️ Дигитално Меню</a></li>
+                        <li><a href="https://clickmenu.eu/ecaterina/establishment" target="_blank" rel="noopener" class="hover:text-surf-accent transition">🍽️ Дигитално Меню</a></li>
                         <li><a href="gallery.html" class="hover:text-surf-accent transition">📸 Галерия</a></li>
                         <li><a href="events.html" class="hover:text-surf-accent transition">🎉 Събития</a></li>
                         <li><a href="about.html" class="hover:text-surf-accent transition">⚓ За нас</a></li>
@@ -179,11 +204,7 @@
                     <iframe
                         title="Бирария Екатерина - Сарафово Бургас"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d183.67639530892637!2d27.523919302294125!3d42.559065485314214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a696b82d5d968d%3A0x533fa38e8c972c7e!2z0LHQuNGA0LDRgNC40Y8g0JXQutCw0YLQtdGA0LjQvdCw!5e0!3m2!1sen!2sbg!4v1772063592674!5m2!1sen!2sbg"
-                        width="100%"
-                        height="100%"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"
                         class="w-full h-full rounded-xl opacity-90 hover:opacity-100 transition-opacity">
                     </iframe>
