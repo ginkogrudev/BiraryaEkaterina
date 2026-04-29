@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentIdx   = 0;
         let visibleItems = [];
 
-        // Only items that have a real <img> inside are lightbox-able
         const getVisible = () =>
             Array.from(galleryItems).filter(
                 i => !i.classList.contains('hidden') && i.querySelector('img')
@@ -84,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentIdx = idx;
             lbImg.src = visibleItems[currentIdx].querySelector('img').src;
             lightbox.style.display = 'flex';
-            void lightbox.offsetWidth;          // force reflow → triggers CSS transition
+            void lightbox.offsetWidth;
             lightbox.style.opacity = '1';
             document.body.style.overflow = 'hidden';
         };
@@ -127,21 +126,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // ═══════════════════════════════════
     // 3. GDPR COOKIE CONSENT
     //
-    //    Storage key : 'ek_cookie_consent'
-    //    Values      : 'accepted' | 'declined' | null (first visit)
+    //    Single source of truth — runs on every page.
+    //    Key    : 'ek_cookie_consent'
+    //    Values : 'accepted' | 'declined' | null (first visit → show banner)
     //
-    //    Returning visitors: the inline <head> script on each page reads
-    //    localStorage and calls loadGA4() before DOMContentLoaded fires,
-    //    so GA4 is already live by the time this code runs — no double-fire.
-    //
-    //    First visit: banner slides up after 1 s.
-    //    Accept  → gtag consent update + loadGA4() called here.
-    //    Decline → stored, banner gone, GA4 never fires.
+    //    First visit  → banner slides up after 1s
+    //    Accept       → gtag consent update + loadGA4() fired
+    //    Decline      → stored, banner gone, GA4 stays off forever
+    //    Return visit → <head> inline script already applied consent,
+    //                   localStorage is set, so this block is skipped entirely
     // ═══════════════════════════════════
-    const CONSENT_KEY  = 'ek_cookie_consent';
-    const hasConsented = localStorage.getItem(CONSENT_KEY);
+    const CONSENT_KEY = 'ek_cookie_consent';
 
-    if (!hasConsented) {
+    if (!localStorage.getItem(CONSENT_KEY)) {
         const banner = document.createElement('div');
         banner.id = 'cookie-banner';
         banner.className = 'fixed bottom-0 left-0 w-full z-[9999] transform transition-transform duration-500 translate-y-full';
